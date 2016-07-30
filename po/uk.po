@@ -1,0 +1,217 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-02-28 19:54+0100\n"
+"PO-Revision-Date: 2016-07-27 20:33+0300\n"
+"Language-Team: LANGUAGE <Dima-73@inbox.lv>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: vovan43 <vovan43@ex.ua>\n"
+"Language: uk_UA\n"
+"X-Generator: Poedit 1.8.8\n"
+
+msgid "<< Press colors keys (the first four bouquets) >>"
+msgstr "<< Натисніть кольорові кнопки (перші чотири букети) >>"
+
+msgid "<< Press menu key (for priority bouquets) >>"
+msgstr "<< Натисніть кнопку меню (для приорітета букетів) >>"
+
+msgid "Action:"
+msgstr "Дія:"
+
+msgid "Alternative service counter in bouquets"
+msgstr "Альтернативна нумерація сервісів в букетах"
+
+msgid "Behavior when timeshift is enabled"
+msgstr "Поведінка при включеному таймшифті"
+
+msgid "Bouquet:"
+msgstr "Букет:"
+
+msgid "Cancel"
+msgstr "Відміна"
+
+msgid "Channel"
+msgstr "Канал"
+
+msgid "Channel:"
+msgstr "Канал:"
+
+msgid "Check timeshift of 0 key in recall service"
+msgstr "Провірка таймшифта при поверненні на сервіс (кнопка 0)"
+
+msgid "Confirmation on hotkey action"
+msgstr "Підтвердження виконання системних функцій"
+
+msgid "Directory browser"
+msgstr "Каталог браузеру"
+
+msgid "Enable bouquets hotkeys"
+msgstr "Цифрові коди на виклик букетів"
+
+msgid "Enable extended number zap"
+msgstr "Включити інфобар цифрових кнопок"
+
+msgid "Enable number hotkeys"
+msgstr "Цифрові коди на основні системні функції"
+
+msgid "Enable picons"
+msgstr "Включити пікони"
+
+msgid "Enigma Restart"
+msgstr "Рестарт GUI"
+
+msgid "Enigma Standby"
+msgstr "Режим очікування"
+
+msgid "Extended NumberZap"
+msgstr "Розширені функції перемикань"
+
+msgid "Extended NumberZap Setup"
+msgstr "Меню налаштувань розширених функцій"
+
+msgid "Extended NumberZap Setup "
+msgstr "Меню налаштувань плагіна"
+
+msgid "Extensions Menu"
+msgstr "Меню доповнень"
+
+msgid ""
+"GUI needs a restart to apply changes 'Behavior when timeshift is "
+"enabled'.\n"
+"Restart the GUI now?"
+msgstr ""
+"Необхідний рестарт GUI для застосувань цих змін 'Поведінка при "
+"включеному таймшифті'.\n"
+"Рестарт GUI зараз?"
+
+msgid "Hotkey action have priority"
+msgstr "Основні системні функції мають приорітет"
+
+msgid "Hotkey bouquets have priority"
+msgstr "Виклик букетів мають приорітет"
+
+msgid "Menu Harddisk"
+msgstr "Меню жорсткого диску"
+
+msgid "Menu Information"
+msgstr "Меню інформації"
+
+msgid "Menu Mainmenu"
+msgstr "Головне меню"
+
+msgid "Menu Service Searching"
+msgstr "Меню пошуку сервісів"
+
+msgid "Menu Setup"
+msgstr "Меню налаштувань"
+
+msgid "Menu Standby/Restart"
+msgstr "Меню виключення"
+
+msgid "Menu System"
+msgstr "Меню система"
+
+msgid "Menuitem About"
+msgstr "Підменю Про"
+
+msgid "Menuitem Language"
+msgstr "Підменю вибір мови"
+
+msgid "Menuitem Manual Scan"
+msgstr "Підменю ручний пошук"
+
+msgid "Menuitem Network"
+msgstr "Підменю мережа"
+
+msgid "No (close)"
+msgstr "Ні (закрити)"
+
+msgid "No (do not remind)"
+msgstr "Ні (больше не нагадувати)"
+
+msgid "Number of channel number digits"
+msgstr "Кількість цифр для номера канала"
+
+msgid "Number:"
+msgstr "Номер:"
+
+msgid "Picons directory (press OK)"
+msgstr "Вибір каталогу піконів (натисніть ОК)"
+
+msgid "Plugin Browser"
+msgstr "Меню плагінів"
+
+msgid "Plugins"
+msgstr "Плагіни"
+
+msgid "Really run %s now?"
+msgstr "Справді виконати %s зараз?"
+
+msgid "Reboot"
+msgstr "Перезавантаження"
+
+msgid "Restart GUI"
+msgstr "Рестарт GUI"
+
+msgid "Save"
+msgstr "Зберегти"
+
+msgid "Service"
+msgstr "Сервіс"
+
+msgid "Service Info"
+msgstr "Інформація про сервіс"
+
+msgid "Setup A/V Settings"
+msgstr "А/В налаштування"
+
+msgid "Setup Customize"
+msgstr "Налаштування опцій"
+
+msgid "Setup Network"
+msgstr "Налаштування мережі"
+
+msgid "Setup Timezone"
+msgstr "Налаштування часового поясу"
+
+msgid "Shutdown"
+msgstr "Повне виключення"
+
+msgid "Standby"
+msgstr "Режим очікування"
+
+msgid "System Reboot"
+msgstr "Перезавантаження"
+
+msgid "System Shutdown"
+msgstr "Виключення"
+
+msgid "Time to wait first keypress (ms)"
+msgstr "Час очікування першого натискання кнопки (мс)"
+
+msgid "Time to wait next keypress (ms)"
+msgstr "Час очікування наступного натискання кнопки (мс)"
+
+msgid "Timers List"
+msgstr "Список таймерів"
+
+msgid "always number zap"
+msgstr "завжди переключення цифрами"
+
+msgid "current:  %s"
+msgstr "поточний:  %s"
+
+msgid "invalid channel number"
+msgstr "недійсний номер"
+
+msgid "only seek jump if available"
+msgstr "тільки скачки цифрами при доступності"
+
+msgid "service not found"
+msgstr "сервіс не знайдено"
+
+msgid "standard"
+msgstr "стандарт"
