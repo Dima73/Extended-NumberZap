@@ -19,7 +19,7 @@ from ServiceReference import ServiceReference
 from plugin import CheckTimeshift, BEHAVIOR
 FIRST_BEHAVIOR = True
 
-plugin_version = "1.16"
+plugin_version = "1.17"
 
 def getAlternativeChannels(service):
 	alternativeServices = eServiceCenter.getInstance().list(eServiceReference(service))

@@ -7,6 +7,7 @@ base_getBouquetNumOffset = None
 base_ChannelSelectionBase__init__ = None
 base_InfoBarNumberZap__init__ = None
 TimeshiftEnabled = False
+
 config.plugins.NumberZapExt = ConfigSubsection()
 config.plugins.NumberZapExt.enable = ConfigYesNo(default=False)
 config.plugins.NumberZapExt.first_delay = ConfigInteger(1000, limits=(0,9999))	# "time to wait first keypress (milliseconds)
@@ -44,7 +45,8 @@ from Tools.BoundFunction import boundFunction
 from Components.ParentalControl import parentalControl
 from Components.ActionMap import NumberActionMap
 from NumberZapExt import ACTIONLIST, getServiceFromNumber, NumberZapExt, NumberZapExtSetupScreen
-from enigma import eServiceReference
+from enigma import eServiceReference, pNavigation
+import NavigationInstance
 
 def actionConfirmed(self, action, retval):
 	if retval:
@@ -99,6 +101,13 @@ def actionConfirmed(self, action, retval):
 					self.session.open(*eval(openstr))
 
 def zapToNumber(self, number, bouquet, startBouquet, checkParentalControl=True, ref=None):
+	#not all images support recording type indicators
+	if hasattr(pNavigation, 'isFromSpecialJumpFastZap'):
+		try:
+			for rec in NavigationInstance.instance.getRecordings(False, pNavigation.isFromSpecialJumpFastZap):
+				NavigationInstance.instance.stopRecordService(rec)
+		except:
+			pass
 	if checkParentalControl:
 		service, bouquet = getServiceFromNumber(self, number, config.plugins.NumberZapExt.acount.value, bouquet, startBouquet)
 	else:
@@ -168,7 +177,6 @@ def numberZapCheckTimeshiftCallback(self, number, bouquet, startBouquet, checkPa
 			pass
 
 def keyNumberGlobal(self, number):
-	#print "%s number key!!!" % number
 	global TimeshiftEnabled
 	TimeshiftEnabled = False
 	numzapext = config.plugins.NumberZapExt.enable.value
