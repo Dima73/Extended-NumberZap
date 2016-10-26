@@ -1,0 +1,62 @@
+#: NumberZapExt.py:650
+msgid "Number of channel number digits"
+msgstr "Número de dígitos para o número do canal"
+
+#: NumberZapExt.py:238
+msgid "Number:"
+msgstr "Número:"
+
+#: NumberZapExt.py:658
+msgid "Picons directory (press OK)"
+msgstr "Pasta dos Picons (prima OK)"
+
+#: plugin.py:139
+#, python-format
+msgid "Really run %s now?"
+msgstr "Executar realmente %s agora?"
+
+#: NumberZapExt.py:780
+msgid "Restart GUI"
+msgstr "Reiniciar GUI"
+
+#: NumberZapExt.py:115 NumberZapExt.py:590
+msgid "Save"
+msgstr "Salvar"
+
+#: NumberZapExt.py:237
+msgid "Service"
+msgstr "Canal"
+
+#: NumberZapExt.py:651
+msgid "Time to wait first keypress (ms)"
+msgstr "Tempo de espera para premir a primeira tecla (ms)"
+
+#: NumberZapExt.py:652
+msgid "Time to wait next keypress (ms)"
+msgstr "Tempo de espera para premir a tecla seguinte (ms)"
+
+#: plugin.py:31
+msgid "always number zap"
+msgstr "Sempre zap número"
+
+#: NumberZapExt.py:116 NumberZapExt.py:151
+#, python-format
+msgid "current:  %s"
+msgstr "atual: %s"
+
+#: NumberZapExt.py:453 NumberZapExt.py:462 NumberZapExt.py:477
+#: NumberZapExt.py:496
+msgid "invalid channel number"
+msgstr "número de canal inválido"
+
+#: plugin.py:31
+msgid "only seek jump if available"
+msgstr "só salta a procura se disponível"
+
+#: NumberZapExt.py:460 NumberZapExt.py:475 NumberZapExt.py:496
+msgid "service not found"
+msgstr "Serviço não encontrado!"
+
+#: plugin.py:31
+msgid "standard"
+msgstr "normal"
