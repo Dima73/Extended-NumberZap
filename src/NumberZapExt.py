@@ -19,7 +19,7 @@ from ServiceReference import ServiceReference
 from plugin import CheckTimeshift, BEHAVIOR
 FIRST_BEHAVIOR = True
 
-plugin_version = "1.17"
+plugin_version = "1.18"
 
 def getAlternativeChannels(service):
 	alternativeServices = eServiceCenter.getInstance().list(eServiceReference(service))
@@ -493,6 +493,7 @@ class NumberZapExt(Screen):
 		self["bouquet"].setText(bouquet)
 		self["chName"].setText(name)
 		self["chBouq"].setText(bqname)
+		self.setTitle(str(self.field) + " " + name)
 		if service and (name != _("service not found") or name != _("invalid channel number")):
 			self.current_service = service
 		else:
