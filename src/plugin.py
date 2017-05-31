@@ -21,6 +21,7 @@ except:
 config.plugins.NumberZapExt.acount_help =  ConfigNothing()
 config.plugins.NumberZapExt.picons = ConfigYesNo(default=False)		# "enable picons"
 config.plugins.NumberZapExt.picondir = ConfigDirectory()		# "picons directory path"
+config.plugins.NumberZapExt.picons_show_default = ConfigYesNo(default=False)
 config.plugins.NumberZapExt.hotkey = ConfigYesNo(default=False)		# "enable number hotkeys"
 config.plugins.NumberZapExt.hotkeys = ConfigText('{}')
 config.plugins.NumberZapExt.bouquets_enable = ConfigYesNo(default=False)	# "enable number hotkeys bouquets"

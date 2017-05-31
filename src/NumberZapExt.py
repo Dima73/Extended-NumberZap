@@ -19,7 +19,7 @@ from ServiceReference import ServiceReference
 from plugin import CheckTimeshift, BEHAVIOR
 FIRST_BEHAVIOR = True
 
-plugin_version = "1.18"
+plugin_version = "1.19"
 
 def getAlternativeChannels(service):
 	alternativeServices = eServiceCenter.getInstance().list(eServiceReference(service))
@@ -62,14 +62,17 @@ def getServiceFromNumber(self, number, acount=True, bouquet=None, startBouquet=N
 		if not servicelist is None:
 			while num:
 				s = servicelist.getNext()
-				if not s.valid(): break
-				try:
-					playable = not (s.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)) or (s.flags & eServiceReference.isNumberedMarker)
-				except:
-					playable = not (s.flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
-				if playable:
+				if not s.valid():
+					break
+				if not (s.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)):
 					num -= 1
-			if not num: return s, num
+			if not num:
+				try:
+					if s.flags & eServiceReference.isNumberedMarker:
+						s = None
+				except:
+					pass
+				return s, num
 		return None, num
 
 	if self.servicelist is None: return None
@@ -512,12 +515,17 @@ class NumberZapExt(Screen):
 					if pathExists(sname):
 						pngname = sname
 					else:
-						self["chPicon"].instance.setPixmap(None)
-						return
+						if not config.plugins.NumberZapExt.picons_show_default.value or not pngname:
+							self["chPicon"].instance.setPixmap(None)
+							return
 				self["chPicon"].instance.setScale(1)
 				self["chPicon"].instance.setPixmapFromFile(pngname)
 			else:
-				self["chPicon"].instance.setPixmap(None)
+				if config.plugins.NumberZapExt.picons_show_default.value and pngname:
+					self["chPicon"].instance.setScale(1)
+					self["chPicon"].instance.setPixmapFromFile(pngname)
+				else:
+					self["chPicon"].instance.setPixmap(None)
 
 	def quit(self):
 		self.Timer.stop()
@@ -661,6 +669,7 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 		self.cfg_hotkey_bouquets = getConfigListEntry(_("Enable bouquets hotkeys"), self.NZE.bouquets_enable)
 		self.cfg_bouquets_priority = getConfigListEntry(_("Hotkey bouquets have priority"), self.NZE.bouquets_priority)
 		self.cfg_bouquets_help = getConfigListEntry(_("<< Press menu key (for priority bouquets) >>"), self.NZE.bouquets_help)
+		self.cfg_picon_default = getConfigListEntry(_("Use default picon if possible"), self.NZE.picons_show_default)
 		self.action = ConfigSubDict()
 		for key,val in self.actionlist.items():
 			self.action[key] = ConfigInteger(default=val['hotkey'], limits=(0,9999))
@@ -686,6 +695,7 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 			list.append(self.cfg_picons)
 			if self.NZE.picons.value:
 				list.append(self.cfg_picondir)
+				list.append(self.cfg_picon_default)
 			list.append(self.cfg_hotkey_bouquets)
 			if self.NZE.bouquets_enable.value:
 				list.append(self.cfg_bouquets_priority)

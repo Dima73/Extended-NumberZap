@@ -180,3 +180,7 @@ msgstr ""
 #: plugin.py:31
 msgid "standard"
 msgstr ""
+
+msgid "Use default picon if possible"
+msgstr ""
+
