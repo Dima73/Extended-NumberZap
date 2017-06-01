@@ -1,0 +1,220 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-02-28 19:54+0100\n"
+"PO-Revision-Date: 2017-06-01 11:44+0200\n"
+"Language-Team: LANGUAGE <Dima-73@inbox.lv>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: maggy\n"
+"Language: de_DE\n"
+"X-Generator: Poedit 2.0.2\n"
+
+msgid "<< Press colors keys (the first four bouquets) >>"
+msgstr "<< Drücken Sie die Farbtasten (die ersten vier Bouquets) >>"
+
+msgid "<< Press menu key (for priority bouquets) >>"
+msgstr "<< Drücken Sie die Menütaste (für vorrangige Bouquets) >>"
+
+msgid "Action:"
+msgstr "Action:"
+
+msgid "Alternative service counter in bouquets"
+msgstr "Alternative Service-Counter in Bouquets"
+
+msgid "Behavior when timeshift is enabled"
+msgstr "Verhalten, wenn Timeshift aktiviert ist"
+
+msgid "Bouquet:"
+msgstr "Bouquet:"
+
+msgid "Cancel"
+msgstr "Abbrechen"
+
+msgid "Channel"
+msgstr "Kanal"
+
+msgid "Channel:"
+msgstr "Kanal:"
+
+msgid "Check timeshift of 0 key in recall service"
+msgstr "Überprüfen Sie den Timeshift von 0 key im recall service"
+
+msgid "Confirmation on hotkey action"
+msgstr "Bestätigung bei Hotkey-Aktion"
+
+msgid "Directory browser"
+msgstr "Directory browser"
+
+msgid "Enable bouquets hotkeys"
+msgstr "Bouquets hotkeys Aktivieren"
+
+msgid "Enable extended number zap"
+msgstr "Extended number zap Aktivieren"
+
+msgid "Enable number hotkeys"
+msgstr "Nummern-Hotkeys aktivieren"
+
+msgid "Enable picons"
+msgstr "Picons aktivieren"
+
+msgid "Enigma Restart"
+msgstr "GUI Neustart"
+
+msgid "Enigma Standby"
+msgstr "Enigma Standby"
+
+msgid "Extended NumberZap"
+msgstr "Extended NumberZap"
+
+msgid "Extended NumberZap Setup"
+msgstr "Extended NumberZap Setup"
+
+msgid "Extended NumberZap Setup "
+msgstr "Extended NumberZap Setup"
+
+msgid "Extensions Menu"
+msgstr "Erweiterungen Menü"
+
+msgid ""
+"GUI needs a restart to apply changes 'Behavior when timeshift is "
+"enabled'.\n"
+"Restart the GUI now?"
+msgstr ""
+"GUI benötigt einen Neustart, um Änderungen anzuwenden 'Verhalten, wenn "
+"Timeshift aktiviert ist'.\n"
+"Starten Sie die GUI jetzt neu?"
+
+msgid "Hotkey action have priority"
+msgstr "Hotkey-Aktion hat Vorrang"
+
+msgid "Hotkey bouquets have priority"
+msgstr "Hotkey-Bouquets haben Vorrang"
+
+msgid "Menu Harddisk"
+msgstr "Menü Harddisk"
+
+msgid "Menu Information"
+msgstr "Menü Information"
+
+msgid "Menu Mainmenu"
+msgstr "Menü Hauptmenü"
+
+msgid "Menu Service Searching"
+msgstr "Menü Service Suchen"
+
+msgid "Menu Setup"
+msgstr "Menü Setup"
+
+msgid "Menu Standby/Restart"
+msgstr "Menü Standby/Neustart"
+
+msgid "Menu System"
+msgstr "Menü System"
+
+msgid "Menuitem About"
+msgstr "Menüpunkt About"
+
+msgid "Menuitem Language"
+msgstr "Menüpunkt Sprache"
+
+msgid "Menuitem Manual Scan"
+msgstr "Menüpunkt Manueller Scan"
+
+msgid "Menuitem Network"
+msgstr "Manueller Netzwerk"
+
+msgid "No (close)"
+msgstr "Nein (schließen)"
+
+msgid "No (do not remind)"
+msgstr "Nein (nicht daran erinnern)"
+
+msgid "Number of channel number digits"
+msgstr "Anzahl der Kanalnummern"
+
+msgid "Number:"
+msgstr "Nummer:"
+
+msgid "Picons directory (press OK)"
+msgstr "Picons Verzeichnis (drücke OK)"
+
+msgid "Plugin Browser"
+msgstr "Plugin Browser"
+
+msgid "Plugins"
+msgstr "Plugins"
+
+msgid "Really run %s now?"
+msgstr "Wirklich starten% s jetzt?"
+
+msgid "Reboot"
+msgstr "Neu starten"
+
+msgid "Restart GUI"
+msgstr "GUI Neustarten"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Service"
+msgstr "Service"
+
+msgid "Service Info"
+msgstr "Service Info"
+
+msgid "Setup A/V Settings"
+msgstr "Setup A/V Settings"
+
+msgid "Setup Customize"
+msgstr "Setup anpassen"
+
+msgid "Setup Network"
+msgstr "Setup Netzwerk"
+
+msgid "Setup Timezone"
+msgstr "Setup Zeitzone"
+
+msgid "Shutdown"
+msgstr "Herunterfahren"
+
+msgid "Standby"
+msgstr "Standby"
+
+msgid "System Reboot"
+msgstr "System neu starten"
+
+msgid "System Shutdown"
+msgstr "Systemabschaltung"
+
+msgid "Time to wait first keypress (ms)"
+msgstr "Wartezeit zum ersten Tastendruck in (ms)"
+
+msgid "Time to wait next keypress (ms)"
+msgstr "Wartezeit zum nächsten Tastendrucks in (ms)"
+
+msgid "Timers List"
+msgstr "Timers Liste"
+
+msgid "always number zap"
+msgstr "Immer Nummer zap"
+
+msgid "current:  %s"
+msgstr "aktuell:  %s"
+
+msgid "invalid channel number"
+msgstr "Ungültige Kanalnummer"
+
+msgid "only seek jump if available"
+msgstr "Suche nur, wenn verfügbar"
+
+msgid "service not found"
+msgstr "Service nicht gefunden"
+
+msgid "standard"
+msgstr "Standard"
+
+msgid "Use default picon if possible"
+msgstr "Verwenden Sie Standard-picon wenn möglich"
