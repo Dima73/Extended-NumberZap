@@ -19,7 +19,15 @@ from ServiceReference import ServiceReference
 from plugin import CheckTimeshift, BEHAVIOR
 FIRST_BEHAVIOR = True
 
-plugin_version = "1.19"
+try:
+	from Components.Renderer.Picon import getPiconName
+	getPiconsName = True
+except:
+	getPiconsName = False
+
+plugin_version = "1.20"
+
+isgetChannelNum = hasattr(eServiceReference, 'getChannelNum')
 
 def getAlternativeChannels(service):
 	alternativeServices = eServiceCenter.getInstance().list(eServiceReference(service))
@@ -59,21 +67,25 @@ ACTIONLIST = getActions('%s/actions.xml'%(PLUGIN_PATH), eval(config.plugins.Numb
 def getServiceFromNumber(self, number, acount=True, bouquet=None, startBouquet=None):
 	def searchHelper(serviceHandler, num, bouquet):
 		servicelist = serviceHandler.list(bouquet)
-		if not servicelist is None:
-			while num:
-				s = servicelist.getNext()
-				if not s.valid():
-					break
-				if not (s.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)):
-					num -= 1
-			if not num:
-				try:
-					if s.flags & eServiceReference.isNumberedMarker:
-						s = None
-				except:
-					pass
-				return s, num
-		return None, num
+		if isgetChannelNum:
+			if servicelist:
+				serviceIterator = servicelist.getNext()
+				while serviceIterator.valid():
+					if num == serviceIterator.getChannelNum():
+						return serviceIterator, num
+					serviceIterator = servicelist.getNext()
+			return None, num
+		else: # old image code
+			if servicelist:
+				while num:
+					s = servicelist.getNext()
+					if not s.valid():
+						break
+					if not (s.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)):
+						num -= 1
+				if not num:
+					return s, num
+			return None, num
 
 	if self.servicelist is None: return None
 	service = None
@@ -91,13 +103,17 @@ def getServiceFromNumber(self, number, acount=True, bouquet=None, startBouquet=N
 	else:
 		bouquet = self.servicelist.bouquet_root
 		bouquetlist = serviceHandler.list(bouquet)
-		if not bouquetlist is None:
-			while number:
-				bouquet = bouquetlist.getNext()
-				if not bouquet.valid(): break
+		if bouquetlist:
+			bouquet = bouquetlist.getNext()
+			while bouquet.valid():
 				if bouquet.flags & eServiceReference.isDirectory and not bouquet.flags & eServiceReference.isInvisible:
 					service, number = searchHelper(serviceHandler, number, bouquet)
-					if acount: break
+					if acount or service: break
+				bouquet = bouquetlist.getNext()
+	if isgetChannelNum and service:
+		playable = not (service.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)) or (service.flags & eServiceReference.isNumberedMarker)
+		if not playable:
+			service = None
 	return service, bouquet
 
 class DirectoryBrowser(Screen):
@@ -503,21 +519,25 @@ class NumberZapExt(Screen):
 			self.current_service = None
 		if config.plugins.NumberZapExt.picons.value:
 			pngname = self.defpicon
+			sname = ""
 			if service:
-				refstr = service.toString()
-				if refstr.startswith('1:134:'):
-					refstr = GetWithAlternative(refstr)
-				sname = ':'.join(refstr.split(':')[:11])
-				pos = sname.rfind(':')
-				if pos != -1:
-					sname = sname[:pos].rstrip(':').replace(':','_')
-					sname = config.plugins.NumberZapExt.picondir.value + sname + '.png'
-					if pathExists(sname):
-						pngname = sname
-					else:
-						if not config.plugins.NumberZapExt.picons_show_default.value or not pngname:
-							self["chPicon"].instance.setPixmap(None)
-							return
+				if getPiconsName:
+					sname = getPiconName(service.toString())
+				else:
+					refstr = service.toString()
+					if refstr.startswith('1:134:'):
+						refstr = GetWithAlternative(refstr)
+					sname = ':'.join(refstr.split(':')[:11])
+					pos = sname.rfind(':')
+					if pos != -1:
+						sname = sname[:pos].rstrip(':').replace(':','_')
+						sname = config.plugins.NumberZapExt.picondir.value + sname + '.png'
+				if sname and pathExists(sname):
+					pngname = sname
+				else:
+					if not config.plugins.NumberZapExt.picons_show_default.value or not pngname:
+						self["chPicon"].instance.setPixmap(None)
+						return
 				self["chPicon"].instance.setScale(1)
 				self["chPicon"].instance.setPixmapFromFile(pngname)
 			else:
@@ -694,7 +714,8 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 				list.append(self.cfg_key0)
 			list.append(self.cfg_picons)
 			if self.NZE.picons.value:
-				list.append(self.cfg_picondir)
+				if not getPiconsName:
+					list.append(self.cfg_picondir)
 				list.append(self.cfg_picon_default)
 			list.append(self.cfg_hotkey_bouquets)
 			if self.NZE.bouquets_enable.value:

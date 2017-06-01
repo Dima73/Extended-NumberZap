@@ -113,7 +113,7 @@ def zapToNumber(self, number, bouquet, startBouquet, checkParentalControl=True, 
 		service, bouquet = getServiceFromNumber(self, number, config.plugins.NumberZapExt.acount.value, bouquet, startBouquet)
 	else:
 		service = ref
-	if not service is None:
+	if not service is None and not service.flags & eServiceReference.isMarker:
 		if not checkParentalControl or parentalControl.isServicePlayable(service, boundFunction(zapToNumber, self, number, bouquet, startBouquet, checkParentalControl=False)):
 			try:
 				if CheckTimeshift is not None and TimeshiftEnabled and config.usage.check_timeshift.value and not self.servicelist.dopipzap:
