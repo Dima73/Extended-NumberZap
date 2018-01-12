@@ -1,0 +1,188 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-07 19:49+0200\n"
+"PO-Revision-Date: 2018-01-12 15:17+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.3\n"
+"Last-Translator: Pr2\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr\n"
+
+#: NumberZapExt.py:438 NumberZapExt.py:480
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: NumberZapExt.py:654
+msgid "<< Press colors keys (the first four bouquets) >>"
+msgstr "<< Appuyer sur les touches de couleurs (les quatre premiers bouquets) >>"
+
+#: NumberZapExt.py:662
+msgid "<< Press menu key (for priority bouquets) >>"
+msgstr "<< Appuyer sur la touche menu (pour les bouquets de priorité) >>"
+
+#: NumberZapExt.py:446 NumberZapExt.py:466 NumberZapExt.py:488
+msgid "Action:"
+msgstr "Action:"
+
+#: NumberZapExt.py:653
+msgid "Alternative service counter in bouquets"
+msgstr "Prendre en compte les alternatifs des bouquets"
+
+#: NumberZapExt.py:655
+msgid "Behavior when timeshift is enabled"
+msgstr "Comportement lorsque le timeshift est activé"
+
+#: NumberZapExt.py:240 NumberZapExt.py:439 NumberZapExt.py:451
+#: NumberZapExt.py:456 NumberZapExt.py:471 NumberZapExt.py:481
+msgid "Bouquet:"
+msgstr "Favoris:"
+
+#: NumberZapExt.py:114 NumberZapExt.py:591
+msgid "Cancel"
+msgstr "Annuler"
+
+#: NumberZapExt.py:239 NumberZapExt.py:450 NumberZapExt.py:455
+#: NumberZapExt.py:470
+msgid "Channel:"
+msgstr "Chaîne:"
+
+#: NumberZapExt.py:656
+msgid "Check timeshift of 0 key in recall service"
+msgstr "Vérifier la PauseDirect en appuyant sur 0 pour rappeler un service"
+
+#: NumberZapExt.py:702
+msgid "Confirmation on hotkey action"
+msgstr "Confirmation lors de l’action d’une hotkey"
+
+#: NumberZapExt.py:113
+msgid "Directory browser"
+msgstr "Navigateur répertoire"
+
+#: NumberZapExt.py:660
+msgid "Enable bouquets hotkeys"
+msgstr "Activer les hotkeys pour les bouquets"
+
+#: NumberZapExt.py:649
+msgid "Enable extended number zap"
+msgstr "Activer le zap par numéro étendu"
+
+#: NumberZapExt.py:659
+msgid "Enable number hotkeys"
+msgstr "Activer les nombres hotkeys"
+
+#: NumberZapExt.py:657
+msgid "Enable picons"
+msgstr "Activer les picons"
+
+#: plugin.py:281
+msgid "Extended NumberZap"
+msgstr "Zap par numéro étendu"
+
+#: NumberZapExt.py:587
+msgid "Extended NumberZap Setup"
+msgstr "Zap par numéro étendu configuration"
+
+#: plugin.py:287 plugin.py:288
+msgid "Extended NumberZap addon"
+msgstr "Zap par numéro étendu extension"
+
+#: NumberZapExt.py:783
+msgid ""
+"GUI needs a restart to apply changes 'Behavior when timeshift is enabled'.\n"
+"Restart the GUI now?"
+msgstr ""
+"L’IGU a besoin d’être redémarré pour appliquer les changements ‘Comportement lorsque la PauseDirect est activée.’\n"
+"Redémarrer l’IGU maintenant?"
+
+#: NumberZapExt.py:701
+msgid "Hotkey action have priority"
+msgstr "L’action de la Hotkey est prioritaire"
+
+#: NumberZapExt.py:661
+msgid "Hotkey bouquets have priority"
+msgstr "Les bouquets en Hotkey sont prioritaire"
+
+#: NumberZapExt.py:781
+msgid "No (close)"
+msgstr "Non (fermer)"
+
+#: NumberZapExt.py:779
+msgid "No (do not remind)"
+msgstr "Non (ne pas rappeler)"
+
+#: NumberZapExt.py:650
+msgid "Number of channel number digits"
+msgstr "Nombre de chiffres pour les chaînes"
+
+#: NumberZapExt.py:238
+msgid "Number:"
+msgstr "Nombre:"
+
+#: NumberZapExt.py:658
+msgid "Picons directory (press OK)"
+msgstr "Répertoire des picons (appuyer sur OK)"
+
+#: plugin.py:139
+#, python-format
+msgid "Really run %s now?"
+msgstr "Vraiment exécuter %s maintenant?"
+
+#: NumberZapExt.py:780
+msgid "Restart GUI"
+msgstr "Redémarrer l’IGU"
+
+#: NumberZapExt.py:115 NumberZapExt.py:590
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: NumberZapExt.py:237
+msgid "Service"
+msgstr "Service"
+
+#: NumberZapExt.py:651
+msgid "Time to wait first keypress (ms)"
+msgstr "Durée de l’attente pour la première touche (ms)"
+
+#: NumberZapExt.py:652
+msgid "Time to wait next keypress (ms)"
+msgstr "Durée de l’attention pour les touches suivante (ms)"
+
+#: plugin.py:31
+msgid "always number zap"
+msgstr "toujours zapper par numéro"
+
+#: NumberZapExt.py:116 NumberZapExt.py:151
+#, python-format
+msgid "current:  %s"
+msgstr "actuel:  %s"
+
+#: NumberZapExt.py:453 NumberZapExt.py:462 NumberZapExt.py:477
+#: NumberZapExt.py:496
+msgid "invalid channel number"
+msgstr "numéro de chaîne non valide"
+
+#: plugin.py:31
+msgid "only seek jump if available"
+msgstr "uniquement les sauts par pas si disponible"
+
+#: NumberZapExt.py:460 NumberZapExt.py:475 NumberZapExt.py:496
+msgid "service not found"
+msgstr "service non trouvé"
+
+#: plugin.py:31
+msgid "standard"
+msgstr "standard"
+
+msgid "Use default picon if possible"
+msgstr "Utiliser si possible le picon par défaut"
