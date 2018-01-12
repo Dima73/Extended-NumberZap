@@ -25,7 +25,7 @@ try:
 except:
 	getPiconsName = False
 
-plugin_version = "1.20"
+plugin_version = "1.21"
 
 isgetChannelNum = hasattr(eServiceReference, 'getChannelNum')
 
@@ -444,14 +444,14 @@ class NumberZapExt(Screen):
 			else:
 				self['InfoIcon'].show()
 
-	def printLabels(self):
+	def printLabels(self, hotkeys_force=False):
 		self.bouquet_action = None
 		bouquet_name = None
 		self.action = ''
 		hotkeys_priority = config.plugins.NumberZapExt.hotkeys_priority.value
 		bouquets_priority = config.plugins.NumberZapExt.bouquets_priority.value or self.BouquetsPriority
 		if hotkeys_priority or bouquets_priority:
-			if bouquets_priority:
+			if bouquets_priority and not hotkeys_force:
 				bouquet_name, self.bouquet_action = self.getHotkeyBouquets(int(self.field))
 			if self.bouquet_action is not None:
 				name = _("%s" % (bouquet_name or ''))
@@ -571,6 +571,13 @@ class NumberZapExt(Screen):
 			self.field += str(number)
 			self.printLabels()
 		elif self.kdelay:
+			if not config.plugins.NumberZapExt.bouquets_enable.value and config.plugins.NumberZapExt.hotkey.value and config.plugins.NumberZapExt.hotkeys_priority.value and l <= 6:
+				num = self.field
+				num += str(number)
+				if self.getHotkeyAction(int(num)):
+					self.field += str(number)
+					self.printLabels(hotkeys_force=True)
+					return
 			self.keyOK()
 
 	def getNameFromNumber(self, number):
@@ -692,13 +699,13 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 		self.cfg_picon_default = getConfigListEntry(_("Use default picon if possible"), self.NZE.picons_show_default)
 		self.action = ConfigSubDict()
 		for key,val in self.actionlist.items():
-			self.action[key] = ConfigInteger(default=val['hotkey'], limits=(0,9999))
+			self.action[key] = ConfigInteger(default=val['hotkey'], limits=(0,999999))
 		self.BouquetsKey = ConfigSubDict()
 		for i in range(len(self.Bouquetlist)):
 			val = 0
 			if i in range(len(self.prev_hotkeys_bouquets)):
 				val = self.prev_hotkeys_bouquets[i]
-			self.BouquetsKey[i] = ConfigInteger(default=val, limits=(0,9999))
+			self.BouquetsKey[i] = ConfigInteger(default=val, limits=(0,999999))
 
 	def createSetup(self):
 		list = [ self.cfg_enable ]
