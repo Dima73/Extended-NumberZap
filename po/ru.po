@@ -88,10 +88,10 @@ msgstr ""
 "Рестарт GUI сейчас?"
 
 msgid "Hotkey action have priority"
-msgstr "Основные системные функции имеют приритет"
+msgstr "Основные системные функции имеют приоритет"
 
 msgid "Hotkey bouquets have priority"
-msgstr "Вызов букетов имеет приритет"
+msgstr "Вызов букетов имеет приоритет"
 
 msgid "Menu Harddisk"
 msgstr "Меню жесткого диска"
@@ -148,7 +148,7 @@ msgid "Plugins"
 msgstr "Меню плагинов"
 
 msgid "Really run %s now?"
-msgstr "На самом деле выполнить %s сейчас?"
+msgstr "Выполнить %s?"
 
 msgid "Reboot"
 msgstr "Перезагрузка"
