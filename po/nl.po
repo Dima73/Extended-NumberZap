@@ -1,0 +1,188 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-07 19:49+0200\n"
+"PO-Revision-Date: 2020-02-02 21:22+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.4\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nl\n"
+
+#: NumberZapExt.py:438 NumberZapExt.py:480
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: NumberZapExt.py:654
+msgid "<< Press colors keys (the first four bouquets) >>"
+msgstr "<< Kies via gekleurde knoppen (de eerste vier favorietenlijsten) >>"
+
+#: NumberZapExt.py:662
+msgid "<< Press menu key (for priority bouquets) >>"
+msgstr "<< Druk op de MENU-knop (voor prioriteit favorietenlijsten) >>"
+
+#: NumberZapExt.py:446 NumberZapExt.py:466 NumberZapExt.py:488
+msgid "Action:"
+msgstr "Actie:"
+
+#: NumberZapExt.py:653
+msgid "Alternative service counter in bouquets"
+msgstr "Alternatieve zendernummers in favorietenlijsten"
+
+#: NumberZapExt.py:655
+msgid "Behavior when timeshift is enabled"
+msgstr "Wanneer Timeshift actief is"
+
+#: NumberZapExt.py:240 NumberZapExt.py:439 NumberZapExt.py:451
+#: NumberZapExt.py:456 NumberZapExt.py:471 NumberZapExt.py:481
+msgid "Bouquet:"
+msgstr "Favorietenlijst"
+
+#: NumberZapExt.py:114 NumberZapExt.py:591
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: NumberZapExt.py:239 NumberZapExt.py:450 NumberZapExt.py:455
+#: NumberZapExt.py:470
+msgid "Channel:"
+msgstr "Zender:"
+
+#: NumberZapExt.py:656
+msgid "Check timeshift of 0 key in recall service"
+msgstr "Controleer Timeshift op 0-knop in 'recall service'"
+
+#: NumberZapExt.py:702
+msgid "Confirmation on hotkey action"
+msgstr "Bevestiging voor hotkey actie"
+
+#: NumberZapExt.py:113
+msgid "Directory browser"
+msgstr "Bestandsverkenner"
+
+#: NumberZapExt.py:660
+msgid "Enable bouquets hotkeys"
+msgstr "Favorietenlijst hotkeys activeren"
+
+#: NumberZapExt.py:649
+msgid "Enable extended number zap"
+msgstr "Extended NumberZap activeren"
+
+#: NumberZapExt.py:659
+msgid "Enable number hotkeys"
+msgstr "Nummer hotkeys activeren"
+
+#: NumberZapExt.py:657
+msgid "Enable picons"
+msgstr "Picons activeren"
+
+#: plugin.py:281
+msgid "Extended NumberZap"
+msgstr "Extended NumberZap"
+
+#: NumberZapExt.py:587
+msgid "Extended NumberZap Setup"
+msgstr "Extended NumberZap Setup"
+
+#: plugin.py:287 plugin.py:288
+msgid "Extended NumberZap addon"
+msgstr "Extended NumberZap addon"
+
+#: NumberZapExt.py:783
+msgid ""
+"GUI needs a restart to apply changes 'Behavior when timeshift is enabled'.\n"
+"Restart the GUI now?"
+msgstr ""
+"GUI moet herstart worden om wijzigingen te activeren.\n"
+"GUI nu herstarten ?"
+
+#: NumberZapExt.py:701
+msgid "Hotkey action have priority"
+msgstr "Hotkeys hebben prioriteit"
+
+#: NumberZapExt.py:661
+msgid "Hotkey bouquets have priority"
+msgstr "Hotkey favorietenlijsten hebben prioriteit"
+
+#: NumberZapExt.py:781
+msgid "No (close)"
+msgstr "Nee (sluiten)"
+
+#: NumberZapExt.py:779
+msgid "No (do not remind)"
+msgstr "Nee (niet opnieuw vragen)"
+
+#: NumberZapExt.py:650
+msgid "Number of channel number digits"
+msgstr "Aantal zendernummers"
+
+#: NumberZapExt.py:238
+msgid "Number:"
+msgstr "Nummer"
+
+#: NumberZapExt.py:658
+msgid "Picons directory (press OK)"
+msgstr "Picons map (druk op OK)"
+
+#: plugin.py:139
+#, python-format
+msgid "Really run %s now?"
+msgstr "Echt %s nu uitvoeren ?"
+
+#: NumberZapExt.py:780
+msgid "Restart GUI"
+msgstr "GUI herstarten"
+
+#: NumberZapExt.py:115 NumberZapExt.py:590
+msgid "Save"
+msgstr "Bevestigen"
+
+#: NumberZapExt.py:237
+msgid "Service"
+msgstr "Zender"
+
+#: NumberZapExt.py:651
+msgid "Time to wait first keypress (ms)"
+msgstr "Wachttijd voor bediening eerste knop (ms)"
+
+#: NumberZapExt.py:652
+msgid "Time to wait next keypress (ms)"
+msgstr "Wachttijd voor bediening volgende knop (ms)"
+
+#: plugin.py:31
+msgid "always number zap"
+msgstr "Altijd zappen via nummers"
+
+#: NumberZapExt.py:116 NumberZapExt.py:151
+#, python-format
+msgid "current:  %s"
+msgstr "huidige: %s"
+
+#: NumberZapExt.py:453 NumberZapExt.py:462 NumberZapExt.py:477
+#: NumberZapExt.py:496
+msgid "invalid channel number"
+msgstr "Zendernummer ongeldig"
+
+#: plugin.py:31
+msgid "only seek jump if available"
+msgstr "Alleen volgende wanneer beschikbaar"
+
+#: NumberZapExt.py:460 NumberZapExt.py:475 NumberZapExt.py:496
+msgid "service not found"
+msgstr "Zender niet gevonden"
+
+#: plugin.py:31
+msgid "standard"
+msgstr "Standaard"
+
+msgid "Use default picon if possible"
+msgstr "Gebruik default Picon wanneer mogelijk"
