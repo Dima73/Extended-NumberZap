@@ -62,7 +62,7 @@ def getActions(xmlfile, hotkeys={}):
 				result[id].pop('id')
 	return result
 
-ACTIONLIST = getActions('%s/actions.xml'%(PLUGIN_PATH), eval(config.plugins.NumberZapExt.hotkeys.value))
+ACTIONLIST = getActions('%s/actions.xml' % (PLUGIN_PATH), eval(config.plugins.NumberZapExt.hotkeys.value))
 
 def getServiceFromNumber(self, number, acount=True, bouquet=None, startBouquet=None):
 	def searchHelper(serviceHandler, num, bouquet):
@@ -81,7 +81,7 @@ def getServiceFromNumber(self, number, acount=True, bouquet=None, startBouquet=N
 					s = servicelist.getNext()
 					if not s.valid():
 						break
-					if not (s.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)):
+					if not (s.flags & (eServiceReference.isMarker | eServiceReference.isDirectory)):
 						num -= 1
 				if not num:
 					return s, num
@@ -113,7 +113,7 @@ def getServiceFromNumber(self, number, acount=True, bouquet=None, startBouquet=N
 						break
 				bouquet = bouquetlist.getNext()
 	if isgetChannelNum and service:
-		playable = not (service.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)) or (service.flags & eServiceReference.isNumberedMarker)
+		playable = not (service.flags & (eServiceReference.isMarker | eServiceReference.isDirectory)) or (service.flags & eServiceReference.isNumberedMarker)
 		if not playable:
 			service = None
 	return service, bouquet
@@ -134,7 +134,7 @@ class DirectoryBrowser(Screen):
 		self["Title"].setText(_("Directory browser"))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
-		self["curdir"] = StaticText(_("current:  %s")%(curdir or ''))
+		self["curdir"] = StaticText(_("current:  %s") % (curdir or ''))
 
 		self.filelist = FileList(curdir, matchingPattern=matchingPattern, enableWrapAround=True)
 		self.filelist.onSelectionChanged.append(self.__selChanged)
@@ -169,7 +169,7 @@ class DirectoryBrowser(Screen):
 		return cur or ''
 
 	def __selChanged(self):
-		self["curdir"].setText(_("current:  %s")%(self.getCurrentSelected()))
+		self["curdir"].setText(_("current:  %s") % (self.getCurrentSelected()))
 
 	def keyOk(self):
 		if self.filelist.canDescent():
@@ -238,8 +238,8 @@ class NumberZapExt(Screen):
 				self.bouquet_root_tv = eServiceReference('1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
 				self.bouquet_root_radio = eServiceReference('1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.radio" ORDER BY bouquet')
 			else:
-				self.bouquet_root_tv = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(service_types_tv))
-				self.bouquet_root_radio = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet'%(service_types_radio))
+				self.bouquet_root_tv = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet' % (service_types_tv))
+				self.bouquet_root_radio = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet' % (service_types_radio))
 			self.Bouquetlist = self.getBouquetlist(self.bouquet_root_tv) + self.getBouquetlist(self.bouquet_root_radio)
 			self.hotkeys_bouquets = eval(config.plugins.NumberZapExt.hotkeys_bouquets.value)
 		self.kdelay = config.plugins.NumberZapExt.kdelay.value
@@ -256,12 +256,12 @@ class NumberZapExt(Screen):
 					break
 
 		self["Title"].setText(_("Service"))
-		self["number"]  = Label(_("Number:"))
+		self["number"] = Label(_("Number:"))
 		self["channel"] = Label(_("Channel:"))
 		self["bouquet"] = Label(_("Bouquet:"))
-		self["chNum"]   = Label()
-		self["chName"]  = Label()
-		self["chBouq"]  = Label()
+		self["chNum"] = Label()
+		self["chName"] = Label()
+		self["chBouq"] = Label()
 		self['InfoIcon'] = Pixmap()
 		self['InfoIcon'].hide()
 		self["chPicon"] = Pixmap()
@@ -644,8 +644,8 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 			self.bouquet_root_tv = eServiceReference('1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
 			self.bouquet_root_radio = eServiceReference('1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.radio" ORDER BY bouquet')
 		else:
-			self.bouquet_root_tv = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(service_types_tv))
-			self.bouquet_root_radio = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet'%(service_types_radio))
+			self.bouquet_root_tv = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet' % (service_types_tv))
+			self.bouquet_root_radio = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet' % (service_types_radio))
 		self.Bouquetlist = self.getBouquetList(self.bouquet_root_tv) + self.getBouquetList(self.bouquet_root_radio)
 		self.prev_hotkeys_bouquets = eval(config.plugins.NumberZapExt.hotkeys_bouquets.value)
 		self.initConfig()

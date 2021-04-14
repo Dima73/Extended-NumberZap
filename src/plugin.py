@@ -18,7 +18,7 @@ try:
 	config.plugins.NumberZapExt.acount = config.usage.alternative_number_mode
 except:
 	config.plugins.NumberZapExt.acount = ConfigYesNo(default=False)
-config.plugins.NumberZapExt.acount_help =  ConfigNothing()
+config.plugins.NumberZapExt.acount_help = ConfigNothing()
 config.plugins.NumberZapExt.picons = ConfigYesNo(default=False)		# "enable picons"
 config.plugins.NumberZapExt.picondir = ConfigDirectory()		# "picons directory path"
 config.plugins.NumberZapExt.picons_show_default = ConfigYesNo(default=False)
@@ -27,7 +27,7 @@ config.plugins.NumberZapExt.hotkeys = ConfigText('{}')
 config.plugins.NumberZapExt.bouquets_enable = ConfigYesNo(default=False)	# "enable number hotkeys bouquets"
 config.plugins.NumberZapExt.hotkeys_bouquets = ConfigText('[]')
 config.plugins.NumberZapExt.bouquets_priority = ConfigYesNo(default=False)
-config.plugins.NumberZapExt.bouquets_help =  ConfigNothing()
+config.plugins.NumberZapExt.bouquets_help = ConfigNothing()
 config.plugins.NumberZapExt.hotkeys_priority = ConfigYesNo(default=False)
 config.plugins.NumberZapExt.hotkeys_confirmation = ConfigYesNo(default=True)
 config.plugins.NumberZapExt.timeshift_behavior = ConfigSelection([("0", _("standard")),("1", _("always number zap")),("2", _("only seek jump if available"))], default="0")
@@ -148,7 +148,7 @@ def numberEntered(self, retval, arg=None, startBouquet=None):
 		elif isinstance(arg, str):
 			if config.plugins.NumberZapExt.hotkeys_confirmation.value:
 				from Screens.MessageBox import MessageBox
-				self.session.openWithCallback(boundFunction(actionConfirmed, self, arg), MessageBox, _("Really run %s now?")%(_(ACTIONLIST[arg]['title'])), type=MessageBox.TYPE_YESNO, timeout=10, default=True)
+				self.session.openWithCallback(boundFunction(actionConfirmed, self, arg), MessageBox, _("Really run %s now?") % (_(ACTIONLIST[arg]['title'])), type=MessageBox.TYPE_YESNO, timeout=10, default=True)
 			else:
 				actionConfirmed(self, arg, True)
 		else:

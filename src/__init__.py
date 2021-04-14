@@ -8,7 +8,7 @@ PLUGIN_PATH = os.path.dirname(__file__)
 def localeInit():
 	lang = language.getLanguage()[:2]
 	os.environ["LANGUAGE"] = lang
-	gettext.bindtextdomain(PLUGIN_NAME, "%s/locale"%(PLUGIN_PATH))
+	gettext.bindtextdomain(PLUGIN_NAME, "%s/locale" % (PLUGIN_PATH))
 
 def _(txt):
 	t = gettext.dgettext(PLUGIN_NAME, txt)
