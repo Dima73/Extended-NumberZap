@@ -81,7 +81,7 @@ def actionConfirmed(self, action, retval):
 					if not result is None:
 						break
 				return result
-			
+
 			root = mdom.getroot()
 			node = findMenuOrItem(root, entry.get('target', ''), entry['type'])
 			if entry['type'] == 'menu':

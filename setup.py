@@ -12,4 +12,3 @@ setup(name='enigma2-plugin-systemplugins-extnumberzap',
 		description='Extended number zap addon for enigma2',
 		cmdclass=setup_translate.cmdclass,
 	)
-
