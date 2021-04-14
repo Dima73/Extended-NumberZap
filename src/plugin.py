@@ -10,9 +10,9 @@ TimeshiftEnabled = False
 
 config.plugins.NumberZapExt = ConfigSubsection()
 config.plugins.NumberZapExt.enable = ConfigYesNo(default=False)
-config.plugins.NumberZapExt.first_delay = ConfigInteger(1000, limits=(0,9999))	# "time to wait first keypress (milliseconds)
-config.plugins.NumberZapExt.kdelay = ConfigInteger(3000, limits=(0,9999))	# "time to wait next keypress (milliseconds)"
-config.plugins.NumberZapExt.digits = ConfigInteger(4, limits=(2,6))
+config.plugins.NumberZapExt.first_delay = ConfigInteger(1000, limits=(0, 9999))	# "time to wait first keypress (milliseconds)
+config.plugins.NumberZapExt.kdelay = ConfigInteger(3000, limits=(0, 9999))	# "time to wait next keypress (milliseconds)"
+config.plugins.NumberZapExt.digits = ConfigInteger(4, limits=(2, 6))
 # "alternative service counter in bouquets"
 try:
 	config.plugins.NumberZapExt.acount = config.usage.alternative_number_mode
@@ -30,7 +30,7 @@ config.plugins.NumberZapExt.bouquets_priority = ConfigYesNo(default=False)
 config.plugins.NumberZapExt.bouquets_help = ConfigNothing()
 config.plugins.NumberZapExt.hotkeys_priority = ConfigYesNo(default=False)
 config.plugins.NumberZapExt.hotkeys_confirmation = ConfigYesNo(default=True)
-config.plugins.NumberZapExt.timeshift_behavior = ConfigSelection([("0", _("standard")),("1", _("always number zap")),("2", _("only seek jump if available"))], default="0")
+config.plugins.NumberZapExt.timeshift_behavior = ConfigSelection([("0", _("standard")), ("1", _("always number zap")), ("2", _("only seek jump if available"))], default="0")
 config.plugins.NumberZapExt.key0 = ConfigYesNo(default=False)
 # "check timeshift if recall service"
 try:

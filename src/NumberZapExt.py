@@ -55,7 +55,7 @@ def getActions(xmlfile, hotkeys={}):
 			id = item.get('id')
 			if id:
 				result[id] = item.attrib.copy()
-				result[id]['title'] = (result[id].get('title','') or id.replace('_',' ').title()).encode('UTF-8')
+				result[id]['title'] = (result[id].get('title', '') or id.replace('_', ' ').title()).encode('UTF-8')
 				result[id]['hotkey'] = int(result[id].get('hotkey', 0)) or hotkeys.get(id, 0)
 				if result[id].get('type', '') in ('screen', 'code'):
 					result[id]['args'] = item.text or ''
@@ -537,7 +537,7 @@ class NumberZapExt(Screen):
 					sname = ':'.join(refstr.split(':')[:11])
 					pos = sname.rfind(':')
 					if pos != -1:
-						sname = sname[:pos].rstrip(':').replace(':','_')
+						sname = sname[:pos].rstrip(':').replace(':', '_')
 						sname = config.plugins.NumberZapExt.picondir.value + sname + '.png'
 				if sname and pathExists(sname):
 					pngname = sname
@@ -602,8 +602,8 @@ class NumberZapExt(Screen):
 
 	def getHotkeyAction(self, number):
 		if config.plugins.NumberZapExt.hotkey.value:
-			for (key,val) in ACTIONLIST.items():
-				if val.get('hotkey',-1) == number:
+			for (key, val) in ACTIONLIST.items():
+				if val.get('hotkey', -1) == number:
 					return key
 		return ''
 
@@ -682,7 +682,7 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 	def initConfig(self):
 		def getPrevValues(section):
 			res = {}
-			for (key,val) in section.content.items.items():
+			for (key, val) in section.content.items.items():
 				if isinstance(val, ConfigSubsection):
 					res[key] = getPrevValues(val)
 				else:
@@ -707,14 +707,14 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 		self.cfg_bouquets_help = getConfigListEntry(_("<< Press menu key (for priority bouquets) >>"), self.NZE.bouquets_help)
 		self.cfg_picon_default = getConfigListEntry(_("Use default picon if possible"), self.NZE.picons_show_default)
 		self.action = ConfigSubDict()
-		for key,val in self.actionlist.items():
-			self.action[key] = ConfigInteger(default=val['hotkey'], limits=(0,999999))
+		for key, val in self.actionlist.items():
+			self.action[key] = ConfigInteger(default=val['hotkey'], limits=(0, 999999))
 		self.BouquetsKey = ConfigSubDict()
 		for i in range(len(self.Bouquetlist)):
 			val = 0
 			if i in range(len(self.prev_hotkeys_bouquets)):
 				val = self.prev_hotkeys_bouquets[i]
-			self.BouquetsKey[i] = ConfigInteger(default=val, limits=(0,999999))
+			self.BouquetsKey[i] = ConfigInteger(default=val, limits=(0, 999999))
 
 	def createSetup(self):
 		list = [self.cfg_enable]
@@ -748,7 +748,7 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 			if self.NZE.hotkey.value:
 				list.append(getConfigListEntry(_("Hotkey action have priority"), self.NZE.hotkeys_priority))
 				list.append(getConfigListEntry(_("Confirmation on hotkey action"), self.NZE.hotkeys_confirmation))
-				for key,val in sorted(self.actionlist.items(), key=lambda x: int(x[1].get('weight', 0))):
+				for key, val in sorted(self.actionlist.items(), key=lambda x: int(x[1].get('weight', 0))):
 					list.append(getConfigListEntry(_(val['title']), self.action[key]))
 		self["config"].list = list
 		self["config"].l.setList(list)
@@ -775,7 +775,7 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 
 	def keyRed(self):
 		def setPrevValues(section, values):
-			for (key,val) in section.content.items.items():
+			for (key, val) in section.content.items.items():
 				value = values.get(key, None)
 				if value is not None:
 					if isinstance(val, ConfigSubsection):
@@ -783,7 +783,7 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 					else:
 						val.value = value
 		setPrevValues(self.NZE, self.prev_values)
-		for key,val in self.actionlist.items():
+		for key, val in self.actionlist.items():
 			if self.action[key].value != val['hotkey']:
 				self.action[key].value = val['hotkey']
 		for i in range(len(self.Bouquetlist)):
@@ -802,7 +802,7 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 			self.NZE.key0.value = False
 		self.NZE.save()
 		tmp = dict()
-		for key,val in self.actionlist.items():
+		for key, val in self.actionlist.items():
 			if self.action[key].value != val['hotkey']:
 				self.actionlist[key]['hotkey'] = self.action[key].value
 			if self.actionlist[key]['hotkey'] != 0:
