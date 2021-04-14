@@ -1,5 +1,6 @@
 from Components.Language import language
-import os, gettext
+import os
+import gettext
 
 PLUGIN_NAME = "NumberZapExt"
 PLUGIN_PATH = os.path.dirname( __file__ )
