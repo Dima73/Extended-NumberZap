@@ -29,9 +29,11 @@ plugin_version = "1.21"
 
 isgetChannelNum = hasattr(eServiceReference, 'getChannelNum')
 
+
 def getAlternativeChannels(service):
 	alternativeServices = eServiceCenter.getInstance().list(eServiceReference(service))
 	return alternativeServices and alternativeServices.getContent("S", True)
+
 
 def GetWithAlternative(service):
 	if service.startswith('1:134:'):
@@ -40,11 +42,13 @@ def GetWithAlternative(service):
 			return channels[0]
 	return service
 
+
 service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 31) || (type == 134) || (type == 195)'
 service_types_radio = '1:7:2:0:0:0:0:0:0:0:(type == 2) || (type == 10)'
 
+
 def getActions(xmlfile, hotkeys={}):
-	result = { }
+	result = {}
 	try:
 		import xml.etree.cElementTree
 		root = xml.etree.cElementTree.parse(xmlfile).getroot()
@@ -55,14 +59,16 @@ def getActions(xmlfile, hotkeys={}):
 			id = item.get('id')
 			if id:
 				result[id] = item.attrib.copy()
-				result[id]['title'] = (result[id].get('title','') or id.replace('_',' ').title()).encode('UTF-8')
+				result[id]['title'] = (result[id].get('title', '') or id.replace('_', ' ').title()).encode('UTF-8')
 				result[id]['hotkey'] = int(result[id].get('hotkey', 0)) or hotkeys.get(id, 0)
 				if result[id].get('type', '') in ('screen', 'code'):
 					result[id]['args'] = item.text or ''
 				result[id].pop('id')
 	return result
 
-ACTIONLIST = getActions('%s/actions.xml'%(PLUGIN_PATH), eval(config.plugins.NumberZapExt.hotkeys.value))
+
+ACTIONLIST = getActions('%s/actions.xml' % (PLUGIN_PATH), eval(config.plugins.NumberZapExt.hotkeys.value))
+
 
 def getServiceFromNumber(self, number, acount=True, bouquet=None, startBouquet=None):
 	def searchHelper(serviceHandler, num, bouquet):
@@ -81,13 +87,14 @@ def getServiceFromNumber(self, number, acount=True, bouquet=None, startBouquet=N
 					s = servicelist.getNext()
 					if not s.valid():
 						break
-					if not (s.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)):
+					if not (s.flags & (eServiceReference.isMarker | eServiceReference.isDirectory)):
 						num -= 1
 				if not num:
 					return s, num
 			return None, num
 
-	if self.servicelist is None: return None
+	if self.servicelist is None:
+		return None
 	service = None
 	serviceHandler = eServiceCenter.getInstance()
 	if startBouquet and bouquet and startBouquet == bouquet:
@@ -108,13 +115,15 @@ def getServiceFromNumber(self, number, acount=True, bouquet=None, startBouquet=N
 			while bouquet.valid():
 				if bouquet.flags & eServiceReference.isDirectory and not bouquet.flags & eServiceReference.isInvisible:
 					service, number = searchHelper(serviceHandler, number, bouquet)
-					if acount or service: break
+					if acount or service:
+						break
 				bouquet = bouquetlist.getNext()
 	if isgetChannelNum and service:
-		playable = not (service.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)) or (service.flags & eServiceReference.isNumberedMarker)
+		playable = not (service.flags & (eServiceReference.isMarker | eServiceReference.isDirectory)) or (service.flags & eServiceReference.isNumberedMarker)
 		if not playable:
 			service = None
 	return service, bouquet
+
 
 class DirectoryBrowser(Screen):
 	skin = """<screen name="DirectoryBrowser" position="center,center" size="520,440" title=" " >
@@ -125,14 +134,14 @@ class DirectoryBrowser(Screen):
 			<widget source="curdir" render="Label" position="5,50" size="510,20"  font="Regular;20" halign="left" valign="center" backgroundColor="background" transparent="1" noWrap="1" />
 			<widget name="filelist" position="5,80" size="510,345" scrollbarMode="showOnDemand" />
 		</screen>"""
-	
+
 	def __init__(self, session, curdir, matchingPattern=None):
 		Screen.__init__(self, session)
 
 		self["Title"].setText(_("Directory browser"))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
-		self["curdir"] = StaticText(_("current:  %s")%(curdir or ''))
+		self["curdir"] = StaticText(_("current:  %s") % (curdir or ''))
 
 		self.filelist = FileList(curdir, matchingPattern=matchingPattern, enableWrapAround=True)
 		self.filelist.onSelectionChanged.append(self.__selChanged)
@@ -167,7 +176,7 @@ class DirectoryBrowser(Screen):
 		return cur or ''
 
 	def __selChanged(self):
-		self["curdir"].setText(_("current:  %s")%(self.getCurrentSelected()))
+		self["curdir"].setText(_("current:  %s") % (self.getCurrentSelected()))
 
 	def keyOk(self):
 		if self.filelist.canDescent():
@@ -179,6 +188,7 @@ class DirectoryBrowser(Screen):
 
 	def keyRed(self):
 		self.close(False)
+
 
 class NumberZapExt(Screen):
 	if getDesktop(0).size().width() >= 1920:
@@ -236,8 +246,8 @@ class NumberZapExt(Screen):
 				self.bouquet_root_tv = eServiceReference('1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
 				self.bouquet_root_radio = eServiceReference('1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.radio" ORDER BY bouquet')
 			else:
-				self.bouquet_root_tv = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(service_types_tv))
-				self.bouquet_root_radio = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet'%(service_types_radio))
+				self.bouquet_root_tv = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet' % (service_types_tv))
+				self.bouquet_root_radio = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet' % (service_types_radio))
 			self.Bouquetlist = self.getBouquetlist(self.bouquet_root_tv) + self.getBouquetlist(self.bouquet_root_radio)
 			self.hotkeys_bouquets = eval(config.plugins.NumberZapExt.hotkeys_bouquets.value)
 		self.kdelay = config.plugins.NumberZapExt.kdelay.value
@@ -254,16 +264,16 @@ class NumberZapExt(Screen):
 					break
 
 		self["Title"].setText(_("Service"))
-		self["number"]  = Label(_("Number:"))
+		self["number"] = Label(_("Number:"))
 		self["channel"] = Label(_("Channel:"))
 		self["bouquet"] = Label(_("Bouquet:"))
-		self["chNum"]   = Label()
-		self["chName"]  = Label()
-		self["chBouq"]  = Label()
+		self["chNum"] = Label()
+		self["chName"] = Label()
+		self["chBouq"] = Label()
 		self['InfoIcon'] = Pixmap()
 		self['InfoIcon'].hide()
 		self["chPicon"] = Pixmap()
-		self["actions"] = NumberActionMap([ "ShortcutActions", "SetupActions", "MenuActions", "InfobarEPGActions"],
+		self["actions"] = NumberActionMap(["ShortcutActions", "SetupActions", "MenuActions", "InfobarEPGActions"],
 			{
 				"red": self.keyRed,
 				"cancel": self.quit,
@@ -292,9 +302,11 @@ class NumberZapExt(Screen):
 		self.onFirstExecBegin.append(self.__onStart)
 
 	def __onStart(self):
-		if self.servicelist is None: self.quit()
+		if self.servicelist is None:
+			self.quit()
 		if config.plugins.NumberZapExt.acount.value and self.servicelist.getMutableList() is None:
-			if not self.bouquets: self.quit()
+			if not self.bouquets:
+				self.quit()
 			if len(self.bouquets) == 1:
 				self.bouquetSelected(self.bouquets[0][1])
 			else:
@@ -305,17 +317,19 @@ class NumberZapExt(Screen):
 			self.startTimer(firstPress=True)
 
 	def getBouquetlist(self, root):
-		bouquets = [ ]
+		bouquets = []
 		serviceHandler = eServiceCenter.getInstance()
 		if config.usage.multibouquet.value:
 			bouquetlist = serviceHandler.list(root)
 			if bouquetlist:
 				while True:
 					s = bouquetlist.getNext()
-					if not s.valid(): break
+					if not s.valid():
+						break
 					if s.flags & eServiceReference.isDirectory and not s.flags & eServiceReference.isInvisible:
 						info = serviceHandler.info(s)
-						if info: bouquets.append((info.getName(s), s))
+						if info:
+							bouquets.append((info.getName(s), s))
 		else:
 			info = serviceHandler.info(root)
 			if info:
@@ -342,7 +356,7 @@ class NumberZapExt(Screen):
 			return 0
 		if self.current_service is None:
 			return 0
-		epglist = [ ]
+		epglist = []
 		self.epglist = epglist
 		cur = self.current_service
 		serviceHandler = eServiceCenter.getInstance()
@@ -469,7 +483,8 @@ class NumberZapExt(Screen):
 					channel = _("Channel:")
 					bouquet = _("Bouquet:")
 					service, name, bqname = self.getNameFromNumber(int(self.field))
-					if name == 'N/A': name = _("invalid channel number")
+					if name == 'N/A':
+						name = _("invalid channel number")
 			else:
 				channel = _("Channel:")
 				bouquet = _("Bouquet:")
@@ -530,7 +545,7 @@ class NumberZapExt(Screen):
 					sname = ':'.join(refstr.split(':')[:11])
 					pos = sname.rfind(':')
 					if pos != -1:
-						sname = sname[:pos].rstrip(':').replace(':','_')
+						sname = sname[:pos].rstrip(':').replace(':', '_')
 						sname = config.plugins.NumberZapExt.picondir.value + sname + '.png'
 				if sname and pathExists(sname):
 					pngname = sname
@@ -595,8 +610,8 @@ class NumberZapExt(Screen):
 
 	def getHotkeyAction(self, number):
 		if config.plugins.NumberZapExt.hotkey.value:
-			for (key,val) in ACTIONLIST.items():
-				if val.get('hotkey',-1) == number:
+			for (key, val) in ACTIONLIST.items():
+				if val.get('hotkey', -1) == number:
 					return key
 		return ''
 
@@ -615,6 +630,7 @@ class NumberZapExt(Screen):
 							if ('.%s"' % config.servicelist.lastmode.value) in str(bouquet_ref):
 								return self.Bouquetlist[num][0], self.Bouquetlist[num][1]
 		return None, None
+
 
 class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 	def __init__(self, session, actionlist):
@@ -637,8 +653,8 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 			self.bouquet_root_tv = eServiceReference('1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
 			self.bouquet_root_radio = eServiceReference('1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.radio" ORDER BY bouquet')
 		else:
-			self.bouquet_root_tv = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'%(service_types_tv))
-			self.bouquet_root_radio = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet'%(service_types_radio))
+			self.bouquet_root_tv = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet' % (service_types_tv))
+			self.bouquet_root_radio = eServiceReference('%s FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet' % (service_types_radio))
 		self.Bouquetlist = self.getBouquetList(self.bouquet_root_tv) + self.getBouquetList(self.bouquet_root_radio)
 		self.prev_hotkeys_bouquets = eval(config.plugins.NumberZapExt.hotkeys_bouquets.value)
 		self.initConfig()
@@ -653,17 +669,19 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 		self.setTitle(self.setup_title + ": " + plugin_version)
 
 	def getBouquetList(self, root):
-		bouquets = [ ]
+		bouquets = []
 		serviceHandler = eServiceCenter.getInstance()
 		if config.usage.multibouquet.value:
 			bouquetlist = serviceHandler.list(root)
 			if bouquetlist:
 				while True:
 					s = bouquetlist.getNext()
-					if not s.valid(): break
+					if not s.valid():
+						break
 					if s.flags & eServiceReference.isDirectory and not s.flags & eServiceReference.isInvisible:
 						info = serviceHandler.info(s)
-						if info: bouquets.append((info.getName(s), s))
+						if info:
+							bouquets.append((info.getName(s), s))
 		else:
 			info = serviceHandler.info(root)
 			if info:
@@ -672,14 +690,14 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 
 	def initConfig(self):
 		def getPrevValues(section):
-			res = { }
-			for (key,val) in section.content.items.items():
+			res = {}
+			for (key, val) in section.content.items.items():
 				if isinstance(val, ConfigSubsection):
 					res[key] = getPrevValues(val)
 				else:
 					res[key] = val.value
 			return res
-		
+
 		self.NZE = config.plugins.NumberZapExt
 		self.prev_values = getPrevValues(self.NZE)
 		self.cfg_enable = getConfigListEntry(_("Enable extended number zap"), self.NZE.enable)
@@ -698,17 +716,17 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 		self.cfg_bouquets_help = getConfigListEntry(_("<< Press menu key (for priority bouquets) >>"), self.NZE.bouquets_help)
 		self.cfg_picon_default = getConfigListEntry(_("Use default picon if possible"), self.NZE.picons_show_default)
 		self.action = ConfigSubDict()
-		for key,val in self.actionlist.items():
-			self.action[key] = ConfigInteger(default=val['hotkey'], limits=(0,999999))
+		for key, val in self.actionlist.items():
+			self.action[key] = ConfigInteger(default=val['hotkey'], limits=(0, 999999))
 		self.BouquetsKey = ConfigSubDict()
 		for i in range(len(self.Bouquetlist)):
 			val = 0
 			if i in range(len(self.prev_hotkeys_bouquets)):
 				val = self.prev_hotkeys_bouquets[i]
-			self.BouquetsKey[i] = ConfigInteger(default=val, limits=(0,999999))
+			self.BouquetsKey[i] = ConfigInteger(default=val, limits=(0, 999999))
 
 	def createSetup(self):
-		list = [ self.cfg_enable ]
+		list = [self.cfg_enable]
 		if self.NZE.enable.value:
 			list.append(self.cfg_digits)
 			list.append(self.cfg_fdelay)
@@ -739,7 +757,7 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 			if self.NZE.hotkey.value:
 				list.append(getConfigListEntry(_("Hotkey action have priority"), self.NZE.hotkeys_priority))
 				list.append(getConfigListEntry(_("Confirmation on hotkey action"), self.NZE.hotkeys_confirmation))
-				for key,val in sorted(self.actionlist.items(), key=lambda x: int(x[1].get('weight', 0))):
+				for key, val in sorted(self.actionlist.items(), key=lambda x: int(x[1].get('weight', 0))):
 					list.append(getConfigListEntry(_(val['title']), self.action[key]))
 		self["config"].list = list
 		self["config"].l.setList(list)
@@ -766,7 +784,7 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 
 	def keyRed(self):
 		def setPrevValues(section, values):
-			for (key,val) in section.content.items.items():
+			for (key, val) in section.content.items.items():
 				value = values.get(key, None)
 				if value is not None:
 					if isinstance(val, ConfigSubsection):
@@ -774,7 +792,7 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 					else:
 						val.value = value
 		setPrevValues(self.NZE, self.prev_values)
-		for key,val in self.actionlist.items():
+		for key, val in self.actionlist.items():
 			if self.action[key].value != val['hotkey']:
 				self.action[key].value = val['hotkey']
 		for i in range(len(self.Bouquetlist)):
@@ -793,7 +811,7 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 			self.NZE.key0.value = False
 		self.NZE.save()
 		tmp = dict()
-		for key,val in self.actionlist.items():
+		for key, val in self.actionlist.items():
 			if self.action[key].value != val['hotkey']:
 				self.actionlist[key]['hotkey'] = self.action[key].value
 			if self.actionlist[key]['hotkey'] != 0:
@@ -819,7 +837,7 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 				(_("Restart GUI"), "restart"),
 				(_("No (close)"), "no"),
 			]
-			self.session.openWithCallback(self.restartGuiNow, ChoiceBox, title= _("GUI needs a restart to apply changes 'Behavior when timeshift is enabled'.\nRestart the GUI now?"), list = open_list)
+			self.session.openWithCallback(self.restartGuiNow, ChoiceBox, title=_("GUI needs a restart to apply changes 'Behavior when timeshift is enabled'.\nRestart the GUI now?"), list=open_list)
 		else:
 			del self.action
 			self.close()

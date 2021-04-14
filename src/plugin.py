@@ -10,15 +10,15 @@ TimeshiftEnabled = False
 
 config.plugins.NumberZapExt = ConfigSubsection()
 config.plugins.NumberZapExt.enable = ConfigYesNo(default=False)
-config.plugins.NumberZapExt.first_delay = ConfigInteger(1000, limits=(0,9999))	# "time to wait first keypress (milliseconds)
-config.plugins.NumberZapExt.kdelay = ConfigInteger(3000, limits=(0,9999))	# "time to wait next keypress (milliseconds)"
-config.plugins.NumberZapExt.digits = ConfigInteger(4, limits=(2,6))
+config.plugins.NumberZapExt.first_delay = ConfigInteger(1000, limits=(0, 9999))	# "time to wait first keypress (milliseconds)
+config.plugins.NumberZapExt.kdelay = ConfigInteger(3000, limits=(0, 9999))	# "time to wait next keypress (milliseconds)"
+config.plugins.NumberZapExt.digits = ConfigInteger(4, limits=(2, 6))
 # "alternative service counter in bouquets"
 try:
 	config.plugins.NumberZapExt.acount = config.usage.alternative_number_mode
 except:
 	config.plugins.NumberZapExt.acount = ConfigYesNo(default=False)
-config.plugins.NumberZapExt.acount_help =  ConfigNothing()
+config.plugins.NumberZapExt.acount_help = ConfigNothing()
 config.plugins.NumberZapExt.picons = ConfigYesNo(default=False)		# "enable picons"
 config.plugins.NumberZapExt.picondir = ConfigDirectory()		# "picons directory path"
 config.plugins.NumberZapExt.picons_show_default = ConfigYesNo(default=False)
@@ -27,10 +27,10 @@ config.plugins.NumberZapExt.hotkeys = ConfigText('{}')
 config.plugins.NumberZapExt.bouquets_enable = ConfigYesNo(default=False)	# "enable number hotkeys bouquets"
 config.plugins.NumberZapExt.hotkeys_bouquets = ConfigText('[]')
 config.plugins.NumberZapExt.bouquets_priority = ConfigYesNo(default=False)
-config.plugins.NumberZapExt.bouquets_help =  ConfigNothing()
+config.plugins.NumberZapExt.bouquets_help = ConfigNothing()
 config.plugins.NumberZapExt.hotkeys_priority = ConfigYesNo(default=False)
 config.plugins.NumberZapExt.hotkeys_confirmation = ConfigYesNo(default=True)
-config.plugins.NumberZapExt.timeshift_behavior = ConfigSelection([("0", _("standard")),("1", _("always number zap")),("2", _("only seek jump if available"))], default="0")
+config.plugins.NumberZapExt.timeshift_behavior = ConfigSelection([("0", _("standard")), ("1", _("always number zap")), ("2", _("only seek jump if available"))], default="0")
 config.plugins.NumberZapExt.key0 = ConfigYesNo(default=False)
 # "check timeshift if recall service"
 try:
@@ -48,6 +48,7 @@ from Components.ActionMap import NumberActionMap
 from NumberZapExt import ACTIONLIST, getServiceFromNumber, NumberZapExt, NumberZapExtSetupScreen
 from enigma import eServiceReference, pNavigation
 import NavigationInstance
+
 
 def actionConfirmed(self, action, retval):
 	if retval:
@@ -67,6 +68,7 @@ def actionConfirmed(self, action, retval):
 			self.session.open(Setup, entry.get('target', ''))
 		elif entry['type'] in ('menu', 'menuitem'):
 			from Screens.Menu import MainMenu, mdom
+
 			def findMenuOrItem(node, val, findwhat):
 				result = None
 				for x in node:
@@ -76,9 +78,10 @@ def actionConfirmed(self, action, retval):
 						result = node
 					elif findwhat == 'menuitem' and x.tag == 'item' and x.get('entryID') == val:
 						result = x
-					if not result is None: break
+					if not result is None:
+						break
 				return result
-			
+
 			root = mdom.getroot()
 			node = findMenuOrItem(root, entry.get('target', ''), entry['type'])
 			if entry['type'] == 'menu':
@@ -95,11 +98,13 @@ def actionConfirmed(self, action, retval):
 					elif x.tag == 'setup':
 						execstr = "from Screens.Setup import Setup"
 						openstr = "Setup, " + x.get('id')
-					if execstr or openstr: break
+					if execstr or openstr:
+						break
 				if execstr:
 					exec execstr in globals(), locals()
 				if openstr:
 					self.session.open(*eval(openstr))
+
 
 def zapToNumber(self, number, bouquet, startBouquet, checkParentalControl=True, ref=None):
 	#not all images support recording type indicators
@@ -139,6 +144,7 @@ def zapToNumber(self, number, bouquet, startBouquet, checkParentalControl=True, 
 			except:
 				self.servicelist.zap()
 
+
 def numberEntered(self, retval, arg=None, startBouquet=None):
 	if retval > 0:
 		if isinstance(arg, eServiceReference) and (startBouquet is None or arg != startBouquet):
@@ -146,11 +152,12 @@ def numberEntered(self, retval, arg=None, startBouquet=None):
 		elif isinstance(arg, str):
 			if config.plugins.NumberZapExt.hotkeys_confirmation.value:
 				from Screens.MessageBox import MessageBox
-				self.session.openWithCallback(boundFunction(actionConfirmed, self, arg), MessageBox, _("Really run %s now?")%(_(ACTIONLIST[arg]['title'])), type=MessageBox.TYPE_YESNO, timeout=10, default=True)
+				self.session.openWithCallback(boundFunction(actionConfirmed, self, arg), MessageBox, _("Really run %s now?") % (_(ACTIONLIST[arg]['title'])), type=MessageBox.TYPE_YESNO, timeout=10, default=True)
 			else:
 				actionConfirmed(self, arg, True)
 		else:
 			zapToNumber(self, retval, arg, startBouquet)
+
 
 def OpenBouquetByRef(self, bouquet):
 	if isinstance(bouquet, eServiceReference):
@@ -161,12 +168,14 @@ def OpenBouquetByRef(self, bouquet):
 			self.servicelist.enterPath(bouquet)
 		self.session.execDialog(self.servicelist)
 
+
 def recallCheckTimeshiftCallback(self, answer):
 	if answer:
 		try:
 			self.servicelist.recallPrevService()
 		except:
 			pass
+
 
 def numberZapCheckTimeshiftCallback(self, number, bouquet, startBouquet, checkParentalControl, ref, answer):
 	global TimeshiftEnabled
@@ -176,6 +185,7 @@ def numberZapCheckTimeshiftCallback(self, number, bouquet, startBouquet, checkPa
 			zapToNumber(self, number, bouquet, startBouquet, checkParentalControl, ref)
 		except:
 			pass
+
 
 def keyNumberGlobal(self, number):
 	global TimeshiftEnabled
@@ -219,14 +229,17 @@ def keyNumberGlobal(self, number):
 		if numzap:
 			self.session.openWithCallback(boundFunction(numberEntered, self), NumberZapExt, number, self.servicelist)
 
+
 def OpenSetupPlugin(self):
 	OpenSetup(self.session)
+
 
 def getBouquetNumOffset(self, bouquet):
 	if config.plugins.NumberZapExt.acount.value:
 		return 0
 	else:
 		return base_getBouquetNumOffset(self, bouquet)
+
 
 def altCountChanged(self, configElement):
 	try:
@@ -237,12 +250,13 @@ def altCountChanged(self, configElement):
 		self.setRoot(self.getRoot())
 		self.setCurrentSelection(service)
 
+
 def InfoBarNumberZapExt__init__(self):
 	behavior = config.plugins.NumberZapExt.timeshift_behavior.value
 	num = 0
 	if behavior == "1":
 		num = -1
-	self["NumberActions"] = NumberActionMap( [ "NumberActions"],
+	self["NumberActions"] = NumberActionMap(["NumberActions"],
 		{
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
@@ -258,9 +272,11 @@ def InfoBarNumberZapExt__init__(self):
 	#if behavior == "1":
 	#	self["NumberActions"].setEnabled(True)
 
+
 def ChannelSelectionBase__init__(self, session):
 	config.plugins.NumberZapExt.acount.addNotifier(self.altCountChanged, False)
 	base_ChannelSelectionBase__init__(self, session)
+
 
 def StartMainSession(session, **kwargs):
 	global base_getBouquetNumOffset, base_keyNumberGlobal, base_ChannelSelectionBase__init__, base_InfoBarNumberZap__init__
@@ -282,8 +298,10 @@ def StartMainSession(session, **kwargs):
 		InfoBarNumberZap.OpenSetupPlugin = OpenSetupPlugin
 		InfoBarNumberZap.OpenBouquetByRef = OpenBouquetByRef
 
+
 def OpenSetup(session, **kwargs):
 	session.open(NumberZapExtSetupScreen, ACTIONLIST)
+
 
 def StartSetup(menuid, **kwargs):
 	if menuid == "system":
@@ -291,7 +309,8 @@ def StartSetup(menuid, **kwargs):
 	else:
 		return []
 
+
 def Plugins(**kwargs):
 	from Plugins.Plugin import PluginDescriptor
-	return [PluginDescriptor(name="Extended NumberZap", description=_("Extended NumberZap addon"), where = PluginDescriptor.WHERE_SESSIONSTART, fnc = StartMainSession),
-		PluginDescriptor(name="Extended NumberZap", description=_("Extended NumberZap addon"), where = PluginDescriptor.WHERE_MENU, fnc = StartSetup)]
+	return [PluginDescriptor(name="Extended NumberZap", description=_("Extended NumberZap addon"), where=PluginDescriptor.WHERE_SESSIONSTART, fnc=StartMainSession),
+		PluginDescriptor(name="Extended NumberZap", description=_("Extended NumberZap addon"), where=PluginDescriptor.WHERE_MENU, fnc=StartSetup)]
