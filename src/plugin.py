@@ -295,5 +295,5 @@ def StartSetup(menuid, **kwargs):
 
 def Plugins(**kwargs):
 	from Plugins.Plugin import PluginDescriptor
-	return [PluginDescriptor(name="Extended NumberZap", description=_("Extended NumberZap addon"), where = PluginDescriptor.WHERE_SESSIONSTART, fnc = StartMainSession),
-		PluginDescriptor(name="Extended NumberZap", description=_("Extended NumberZap addon"), where = PluginDescriptor.WHERE_MENU, fnc = StartSetup)]
+	return [PluginDescriptor(name="Extended NumberZap", description=_("Extended NumberZap addon"), where=PluginDescriptor.WHERE_SESSIONSTART, fnc=StartMainSession),
+		PluginDescriptor(name="Extended NumberZap", description=_("Extended NumberZap addon"), where=PluginDescriptor.WHERE_MENU, fnc=StartSetup)]

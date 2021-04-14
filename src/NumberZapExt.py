@@ -828,7 +828,7 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 				(_("Restart GUI"), "restart"),
 				(_("No (close)"), "no"),
 			]
-			self.session.openWithCallback(self.restartGuiNow, ChoiceBox, title= _("GUI needs a restart to apply changes 'Behavior when timeshift is enabled'.\nRestart the GUI now?"), list = open_list)
+			self.session.openWithCallback(self.restartGuiNow, ChoiceBox, title=_("GUI needs a restart to apply changes 'Behavior when timeshift is enabled'.\nRestart the GUI now?"), list=open_list)
 		else:
 			del self.action
 			self.close()
