@@ -87,7 +87,8 @@ def getServiceFromNumber(self, number, acount=True, bouquet=None, startBouquet=N
 					return s, num
 			return None, num
 
-	if self.servicelist is None: return None
+	if self.servicelist is None:
+		return None
 	service = None
 	serviceHandler = eServiceCenter.getInstance()
 	if startBouquet and bouquet and startBouquet == bouquet:
@@ -108,7 +109,8 @@ def getServiceFromNumber(self, number, acount=True, bouquet=None, startBouquet=N
 			while bouquet.valid():
 				if bouquet.flags & eServiceReference.isDirectory and not bouquet.flags & eServiceReference.isInvisible:
 					service, number = searchHelper(serviceHandler, number, bouquet)
-					if acount or service: break
+					if acount or service:
+						break
 				bouquet = bouquetlist.getNext()
 	if isgetChannelNum and service:
 		playable = not (service.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)) or (service.flags & eServiceReference.isNumberedMarker)
@@ -292,9 +294,11 @@ class NumberZapExt(Screen):
 		self.onFirstExecBegin.append(self.__onStart)
 
 	def __onStart(self):
-		if self.servicelist is None: self.quit()
+		if self.servicelist is None:
+			self.quit()
 		if config.plugins.NumberZapExt.acount.value and self.servicelist.getMutableList() is None:
-			if not self.bouquets: self.quit()
+			if not self.bouquets:
+				self.quit()
 			if len(self.bouquets) == 1:
 				self.bouquetSelected(self.bouquets[0][1])
 			else:
@@ -312,10 +316,12 @@ class NumberZapExt(Screen):
 			if bouquetlist:
 				while True:
 					s = bouquetlist.getNext()
-					if not s.valid(): break
+					if not s.valid():
+						break
 					if s.flags & eServiceReference.isDirectory and not s.flags & eServiceReference.isInvisible:
 						info = serviceHandler.info(s)
-						if info: bouquets.append((info.getName(s), s))
+						if info:
+							bouquets.append((info.getName(s), s))
 		else:
 			info = serviceHandler.info(root)
 			if info:
@@ -469,7 +475,8 @@ class NumberZapExt(Screen):
 					channel = _("Channel:")
 					bouquet = _("Bouquet:")
 					service, name, bqname = self.getNameFromNumber(int(self.field))
-					if name == 'N/A': name = _("invalid channel number")
+					if name == 'N/A':
+						name = _("invalid channel number")
 			else:
 				channel = _("Channel:")
 				bouquet = _("Bouquet:")
@@ -660,10 +667,12 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 			if bouquetlist:
 				while True:
 					s = bouquetlist.getNext()
-					if not s.valid(): break
+					if not s.valid():
+						break
 					if s.flags & eServiceReference.isDirectory and not s.flags & eServiceReference.isInvisible:
 						info = serviceHandler.info(s)
-						if info: bouquets.append((info.getName(s), s))
+						if info:
+							bouquets.append((info.getName(s), s))
 		else:
 			info = serviceHandler.info(root)
 			if info:

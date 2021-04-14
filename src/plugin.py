@@ -76,7 +76,8 @@ def actionConfirmed(self, action, retval):
 						result = node
 					elif findwhat == 'menuitem' and x.tag == 'item' and x.get('entryID') == val:
 						result = x
-					if not result is None: break
+					if not result is None:
+						break
 				return result
 			
 			root = mdom.getroot()
@@ -95,7 +96,8 @@ def actionConfirmed(self, action, retval):
 					elif x.tag == 'setup':
 						execstr = "from Screens.Setup import Setup"
 						openstr = "Setup, " + x.get('id')
-					if execstr or openstr: break
+					if execstr or openstr:
+						break
 				if execstr:
 					exec execstr in globals(), locals()
 				if openstr:
