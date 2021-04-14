@@ -244,7 +244,7 @@ def InfoBarNumberZapExt__init__(self):
 	num = 0
 	if behavior == "1":
 		num = -1
-	self["NumberActions"] = NumberActionMap( [ "NumberActions"],
+	self["NumberActions"] = NumberActionMap(["NumberActions"],
 		{
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,

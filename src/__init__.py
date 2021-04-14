@@ -3,7 +3,7 @@ import os
 import gettext
 
 PLUGIN_NAME = "NumberZapExt"
-PLUGIN_PATH = os.path.dirname( __file__ )
+PLUGIN_PATH = os.path.dirname(__file__)
 
 def localeInit():
 	lang = language.getLanguage()[:2]

@@ -44,7 +44,7 @@ service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 
 service_types_radio = '1:7:2:0:0:0:0:0:0:0:(type == 2) || (type == 10)'
 
 def getActions(xmlfile, hotkeys={}):
-	result = { }
+	result = {}
 	try:
 		import xml.etree.cElementTree
 		root = xml.etree.cElementTree.parse(xmlfile).getroot()
@@ -265,7 +265,7 @@ class NumberZapExt(Screen):
 		self['InfoIcon'] = Pixmap()
 		self['InfoIcon'].hide()
 		self["chPicon"] = Pixmap()
-		self["actions"] = NumberActionMap([ "ShortcutActions", "SetupActions", "MenuActions", "InfobarEPGActions"],
+		self["actions"] = NumberActionMap(["ShortcutActions", "SetupActions", "MenuActions", "InfobarEPGActions"],
 			{
 				"red": self.keyRed,
 				"cancel": self.quit,
@@ -309,7 +309,7 @@ class NumberZapExt(Screen):
 			self.startTimer(firstPress=True)
 
 	def getBouquetlist(self, root):
-		bouquets = [ ]
+		bouquets = []
 		serviceHandler = eServiceCenter.getInstance()
 		if config.usage.multibouquet.value:
 			bouquetlist = serviceHandler.list(root)
@@ -348,7 +348,7 @@ class NumberZapExt(Screen):
 			return 0
 		if self.current_service is None:
 			return 0
-		epglist = [ ]
+		epglist = []
 		self.epglist = epglist
 		cur = self.current_service
 		serviceHandler = eServiceCenter.getInstance()
@@ -660,7 +660,7 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 		self.setTitle(self.setup_title + ": " + plugin_version)
 
 	def getBouquetList(self, root):
-		bouquets = [ ]
+		bouquets = []
 		serviceHandler = eServiceCenter.getInstance()
 		if config.usage.multibouquet.value:
 			bouquetlist = serviceHandler.list(root)
@@ -681,7 +681,7 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 
 	def initConfig(self):
 		def getPrevValues(section):
-			res = { }
+			res = {}
 			for (key,val) in section.content.items.items():
 				if isinstance(val, ConfigSubsection):
 					res[key] = getPrevValues(val)
@@ -717,7 +717,7 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 			self.BouquetsKey[i] = ConfigInteger(default=val, limits=(0,999999))
 
 	def createSetup(self):
-		list = [ self.cfg_enable ]
+		list = [self.cfg_enable]
 		if self.NZE.enable.value:
 			list.append(self.cfg_digits)
 			list.append(self.cfg_fdelay)
