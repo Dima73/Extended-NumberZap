@@ -29,9 +29,11 @@ plugin_version = "1.21"
 
 isgetChannelNum = hasattr(eServiceReference, 'getChannelNum')
 
+
 def getAlternativeChannels(service):
 	alternativeServices = eServiceCenter.getInstance().list(eServiceReference(service))
 	return alternativeServices and alternativeServices.getContent("S", True)
+
 
 def GetWithAlternative(service):
 	if service.startswith('1:134:'):
@@ -40,8 +42,10 @@ def GetWithAlternative(service):
 			return channels[0]
 	return service
 
+
 service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 31) || (type == 134) || (type == 195)'
 service_types_radio = '1:7:2:0:0:0:0:0:0:0:(type == 2) || (type == 10)'
+
 
 def getActions(xmlfile, hotkeys={}):
 	result = {}
@@ -62,7 +66,9 @@ def getActions(xmlfile, hotkeys={}):
 				result[id].pop('id')
 	return result
 
+
 ACTIONLIST = getActions('%s/actions.xml' % (PLUGIN_PATH), eval(config.plugins.NumberZapExt.hotkeys.value))
+
 
 def getServiceFromNumber(self, number, acount=True, bouquet=None, startBouquet=None):
 	def searchHelper(serviceHandler, num, bouquet):
@@ -117,6 +123,7 @@ def getServiceFromNumber(self, number, acount=True, bouquet=None, startBouquet=N
 		if not playable:
 			service = None
 	return service, bouquet
+
 
 class DirectoryBrowser(Screen):
 	skin = """<screen name="DirectoryBrowser" position="center,center" size="520,440" title=" " >
@@ -181,6 +188,7 @@ class DirectoryBrowser(Screen):
 
 	def keyRed(self):
 		self.close(False)
+
 
 class NumberZapExt(Screen):
 	if getDesktop(0).size().width() >= 1920:
@@ -622,6 +630,7 @@ class NumberZapExt(Screen):
 							if ('.%s"' % config.servicelist.lastmode.value) in str(bouquet_ref):
 								return self.Bouquetlist[num][0], self.Bouquetlist[num][1]
 		return None, None
+
 
 class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 	def __init__(self, session, actionlist):

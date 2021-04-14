@@ -49,6 +49,7 @@ from NumberZapExt import ACTIONLIST, getServiceFromNumber, NumberZapExt, NumberZ
 from enigma import eServiceReference, pNavigation
 import NavigationInstance
 
+
 def actionConfirmed(self, action, retval):
 	if retval:
 		entry = ACTIONLIST[action]
@@ -67,6 +68,7 @@ def actionConfirmed(self, action, retval):
 			self.session.open(Setup, entry.get('target', ''))
 		elif entry['type'] in ('menu', 'menuitem'):
 			from Screens.Menu import MainMenu, mdom
+
 			def findMenuOrItem(node, val, findwhat):
 				result = None
 				for x in node:
@@ -102,6 +104,7 @@ def actionConfirmed(self, action, retval):
 					exec execstr in globals(), locals()
 				if openstr:
 					self.session.open(*eval(openstr))
+
 
 def zapToNumber(self, number, bouquet, startBouquet, checkParentalControl=True, ref=None):
 	#not all images support recording type indicators
@@ -141,6 +144,7 @@ def zapToNumber(self, number, bouquet, startBouquet, checkParentalControl=True, 
 			except:
 				self.servicelist.zap()
 
+
 def numberEntered(self, retval, arg=None, startBouquet=None):
 	if retval > 0:
 		if isinstance(arg, eServiceReference) and (startBouquet is None or arg != startBouquet):
@@ -154,6 +158,7 @@ def numberEntered(self, retval, arg=None, startBouquet=None):
 		else:
 			zapToNumber(self, retval, arg, startBouquet)
 
+
 def OpenBouquetByRef(self, bouquet):
 	if isinstance(bouquet, eServiceReference):
 		if self.servicelist.getRoot() != bouquet:
@@ -163,12 +168,14 @@ def OpenBouquetByRef(self, bouquet):
 			self.servicelist.enterPath(bouquet)
 		self.session.execDialog(self.servicelist)
 
+
 def recallCheckTimeshiftCallback(self, answer):
 	if answer:
 		try:
 			self.servicelist.recallPrevService()
 		except:
 			pass
+
 
 def numberZapCheckTimeshiftCallback(self, number, bouquet, startBouquet, checkParentalControl, ref, answer):
 	global TimeshiftEnabled
@@ -178,6 +185,7 @@ def numberZapCheckTimeshiftCallback(self, number, bouquet, startBouquet, checkPa
 			zapToNumber(self, number, bouquet, startBouquet, checkParentalControl, ref)
 		except:
 			pass
+
 
 def keyNumberGlobal(self, number):
 	global TimeshiftEnabled
@@ -221,14 +229,17 @@ def keyNumberGlobal(self, number):
 		if numzap:
 			self.session.openWithCallback(boundFunction(numberEntered, self), NumberZapExt, number, self.servicelist)
 
+
 def OpenSetupPlugin(self):
 	OpenSetup(self.session)
+
 
 def getBouquetNumOffset(self, bouquet):
 	if config.plugins.NumberZapExt.acount.value:
 		return 0
 	else:
 		return base_getBouquetNumOffset(self, bouquet)
+
 
 def altCountChanged(self, configElement):
 	try:
@@ -238,6 +249,7 @@ def altCountChanged(self, configElement):
 		service = self.getCurrentSelection()
 		self.setRoot(self.getRoot())
 		self.setCurrentSelection(service)
+
 
 def InfoBarNumberZapExt__init__(self):
 	behavior = config.plugins.NumberZapExt.timeshift_behavior.value
@@ -260,9 +272,11 @@ def InfoBarNumberZapExt__init__(self):
 	#if behavior == "1":
 	#	self["NumberActions"].setEnabled(True)
 
+
 def ChannelSelectionBase__init__(self, session):
 	config.plugins.NumberZapExt.acount.addNotifier(self.altCountChanged, False)
 	base_ChannelSelectionBase__init__(self, session)
+
 
 def StartMainSession(session, **kwargs):
 	global base_getBouquetNumOffset, base_keyNumberGlobal, base_ChannelSelectionBase__init__, base_InfoBarNumberZap__init__
@@ -284,14 +298,17 @@ def StartMainSession(session, **kwargs):
 		InfoBarNumberZap.OpenSetupPlugin = OpenSetupPlugin
 		InfoBarNumberZap.OpenBouquetByRef = OpenBouquetByRef
 
+
 def OpenSetup(session, **kwargs):
 	session.open(NumberZapExtSetupScreen, ACTIONLIST)
+
 
 def StartSetup(menuid, **kwargs):
 	if menuid == "system":
 		return [(_("Extended NumberZap"), OpenSetup, "numzapext_setup", None)]
 	else:
 		return []
+
 
 def Plugins(**kwargs):
 	from Plugins.Plugin import PluginDescriptor
