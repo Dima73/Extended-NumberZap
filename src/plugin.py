@@ -209,7 +209,7 @@ def keyNumberGlobal(self, number):
 		numzap = True
 		timeshift_behavior = config.plugins.NumberZapExt.timeshift_behavior.value
 		try:
-			if self.has_key("TimeshiftActions") and self.timeshiftEnabled():
+			if "TimeshiftActions" in self and self.timeshiftEnabled():
 				TimeshiftEnabled = True
 				if timeshift_behavior == "0":
 					ts = self.getTimeshift()
@@ -218,7 +218,7 @@ def keyNumberGlobal(self, number):
 				elif timeshift_behavior == "2":
 					numzap = False
 		except:
-			if self.has_key("TimeshiftActions") and self.timeshift_enabled:
+			if "TimeshiftActions" in self and self.timeshift_enabled:
 				TimeshiftEnabled = True
 				if timeshift_behavior == "0":
 					ts = self.getTimeshift()
