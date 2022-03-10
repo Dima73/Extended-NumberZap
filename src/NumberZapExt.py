@@ -16,7 +16,7 @@ from enigma import eServiceReference, eServiceCenter, eTimer, getDesktop, eEPGCa
 from Screens.EventView import EventViewSimple
 from Screens.EpgSelection import EPGSelection
 from ServiceReference import ServiceReference
-from plugin import CheckTimeshift, BEHAVIOR
+from .plugin import CheckTimeshift, BEHAVIOR
 FIRST_BEHAVIOR = True
 
 try:

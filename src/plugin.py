@@ -45,23 +45,22 @@ from Screens.ChannelSelection import ChannelSelectionBase
 from Tools.BoundFunction import boundFunction
 from Components.ParentalControl import parentalControl
 from Components.ActionMap import NumberActionMap
-from NumberZapExt import ACTIONLIST, getServiceFromNumber, NumberZapExt, NumberZapExtSetupScreen
+from .NumberZapExt import ACTIONLIST, getServiceFromNumber, NumberZapExt, NumberZapExtSetupScreen
 from enigma import eServiceReference, pNavigation
 import NavigationInstance
-import six
 
 def actionConfirmed(self, action, retval):
 	if retval:
 		entry = ACTIONLIST[action]
 		if entry['type'] == 'code':
 			if entry['args']:
-				exec(entry['args'] in globals(), locals())
+				exec(entry['args'], globals(), locals())
 		elif entry['type'] == 'screen':
 			screen = entry.get('screen')
 			if screen:
 				module = entry.get('module')
 				if module:
-					exec('from ' + module + ' import ' + screen in globals(), locals())
+					exec('from ' + module + ' import ' + screen, globals(), locals())
 				self.session.open(*eval(screen + ', ' + entry['args']))
 		elif entry['type'] == 'setup':
 			from Screens.Setup import Setup
@@ -101,7 +100,7 @@ def actionConfirmed(self, action, retval):
 					if execstr or openstr:
 						break
 				if execstr:
-					exec(execstr in globals(), locals())
+					exec(execstr, globals(), locals())
 				if openstr:
 					self.session.open(*eval(openstr))
 
