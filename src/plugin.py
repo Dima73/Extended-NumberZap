@@ -45,7 +45,7 @@ from Screens.ChannelSelection import ChannelSelectionBase
 from Tools.BoundFunction import boundFunction
 from Components.ParentalControl import parentalControl
 from Components.ActionMap import NumberActionMap
-from NumberZapExt import ACTIONLIST, getServiceFromNumber, NumberZapExt, NumberZapExtSetupScreen
+from .NumberZapExt import ACTIONLIST, getServiceFromNumber, NumberZapExt, NumberZapExtSetupScreen
 from enigma import eServiceReference, pNavigation
 import NavigationInstance
 import six
