@@ -48,7 +48,6 @@ from Components.ActionMap import NumberActionMap
 from .NumberZapExt import ACTIONLIST, getServiceFromNumber, NumberZapExt, NumberZapExtSetupScreen
 from enigma import eServiceReference, pNavigation
 import NavigationInstance
-import six
 
 def actionConfirmed(self, action, retval):
 	if retval:
