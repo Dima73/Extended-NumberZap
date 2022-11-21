@@ -25,7 +25,7 @@ try:
 except:
 	getPiconsName = False
 
-plugin_version = "1.21"
+plugin_version = "1.22"
 
 isgetChannelNum = hasattr(eServiceReference, 'getChannelNum')
 
@@ -43,7 +43,7 @@ def GetWithAlternative(service):
 	return service
 
 
-service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 31) || (type == 134) || (type == 195)'
+service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 31) || (type == 32) || (type == 134) || (type == 195)'
 service_types_radio = '1:7:2:0:0:0:0:0:0:0:(type == 2) || (type == 10)'
 
 
@@ -59,7 +59,7 @@ def getActions(xmlfile, hotkeys={}):
 			id = item.get('id')
 			if id:
 				result[id] = item.attrib.copy()
-				result[id]['title'] = (result[id].get('title', '') or id.replace('_', ' ').title()).encode('UTF-8')
+				result[id]['title'] = result[id].get('title', '') or id.replace('_', ' ').title()
 				result[id]['hotkey'] = int(result[id].get('hotkey', 0)) or hotkeys.get(id, 0)
 				if result[id].get('type', '') in ('screen', 'code'):
 					result[id]['args'] = item.text or ''
