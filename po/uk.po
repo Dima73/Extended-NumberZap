@@ -22,13 +22,13 @@ msgid "Action:"
 msgstr "Дія:"
 
 msgid "Alternative service counter in bouquets"
-msgstr "Альтернативна нумерація сервісів в букетах"
+msgstr "Альтернативна нумерація каналів в фаворитах"
 
 msgid "Behavior when timeshift is enabled"
 msgstr "Поведінка при включеному таймшифті"
 
 msgid "Bouquet:"
-msgstr "Букет:"
+msgstr "Фаворит:"
 
 msgid "Cancel"
 msgstr "Відміна"
@@ -40,7 +40,7 @@ msgid "Channel:"
 msgstr "Канал:"
 
 msgid "Check timeshift of 0 key in recall service"
-msgstr "Провірка таймшифта при поверненні на сервіс (кнопка 0)"
+msgstr "Провірка таймшифта при поверненні на канал (кнопка 0)"
 
 msgid "Confirmation on hotkey action"
 msgstr "Підтвердження виконання системних функцій"
@@ -103,7 +103,7 @@ msgid "Menu Mainmenu"
 msgstr "Головне меню"
 
 msgid "Menu Service Searching"
-msgstr "Меню пошуку сервісів"
+msgstr "Меню пошуку каналів"
 
 msgid "Menu Setup"
 msgstr "Меню налаштувань"
@@ -130,10 +130,10 @@ msgid "No (close)"
 msgstr "Ні (закрити)"
 
 msgid "No (do not remind)"
-msgstr "Ні (больше не нагадувати)"
+msgstr "Ні (більше не нагадувати)"
 
 msgid "Number of channel number digits"
-msgstr "Кількість цифр для номера канала"
+msgstr "Кількість цифр для номера каналу"
 
 msgid "Number:"
 msgstr "Номер:"
@@ -160,10 +160,10 @@ msgid "Save"
 msgstr "Зберегти"
 
 msgid "Service"
-msgstr "Сервіс"
+msgstr "Канал"
 
 msgid "Service Info"
-msgstr "Інформація про сервіс"
+msgstr "Інформація про канал"
 
 msgid "Setup A/V Settings"
 msgstr "А/В налаштування"
@@ -198,6 +198,9 @@ msgstr "Час очікування наступного натискання к
 msgid "Timers List"
 msgstr "Список таймерів"
 
+msgid "Use default picon if possible"
+msgstr "Використовати пікон за замовчуванням, якщо можливо"
+
 msgid "always number zap"
 msgstr "завжди переключення цифрами"
 
@@ -211,7 +214,7 @@ msgid "only seek jump if available"
 msgstr "тільки скачки цифрами при доступності"
 
 msgid "service not found"
-msgstr "сервіс не знайдено"
+msgstr "канал не знайдено"
 
 msgid "standard"
 msgstr "стандарт"
