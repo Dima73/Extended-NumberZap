@@ -251,6 +251,7 @@ def altCountChanged(self, configElement):
 
 
 def InfoBarNumberZapExt__init__(self):
+	self.toggleSeekStatus = False
 	behavior = config.plugins.NumberZapExt.timeshift_behavior.value
 	num = 0
 	if behavior == "1":
